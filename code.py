@@ -1,26 +1,14 @@
-def count_valid_bs(L):
-    count = 0
-    d = 1
-    while True:
-        b = 10**d -1
-        if b > L:
-            break
-        count +=1
-        d +=1
-    return count
+m = int(input())
+solutions = set()
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx +=1
-    for _ in range(T):
-        K = int(input[idx])
-        L = int(input[idx+1])
-        idx +=2
-        count_b = count_valid_bs(L)
-        if count_b ==0:
-            print(0, 0)
-        else:
-            total_pairs
+for s in range(1, 82):  # since sum of digits can't exceed 81
+    if m % s == 0:
+        y = m // s
+        sum_digits = sum(int(d) for d in str(y))
+        if sum_digits == s:
+            solutions.add(y)
+
+sorted_solutions = sorted(solutions)
+print(len(sorted_solutions))
+for y in sorted_solutions:
+    print(y)
