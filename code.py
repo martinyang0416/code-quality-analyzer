@@ -1,18 +1,14 @@
-import sys
+m = int(input())
+solutions = set()
 
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    T = int(data[0])
-    results = []
-    for i in range(1, T + 1):
-        N = int(data[i])
-        if N % 2 == 0:
-            res = N // 2
-        else:
-            res = (N - 1) // 2 + 1
-        results.append(res)
-    print('\n'.join(map(str, results)))
+for s in range(1, 82):  # since sum of digits can't exceed 81
+    if m % s == 0:
+        y = m // s
+        sum_digits = sum(int(d) for d in str(y))
+        if sum_digits == s:
+            solutions.add(y)
 
-if __name__ == "__main__":
-    main()
+sorted_solutions = sorted(solutions)
+print(len(sorted_solutions))
+for y in sorted_solutions:
+    print(y)
