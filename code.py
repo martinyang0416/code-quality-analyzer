@@ -1,19 +1,19 @@
-from collections import deque
-import sys
+MOD = 10**9 + 7
 
 def main():
-    r, c = map(int, sys.stdin.readline().split())
-    grid = []
-    for _ in range(r):
-        row = list(sys.stdin.readline().strip())
-        grid.append(row)
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    n = int(data[0])
+    k = int(data[1])
     
-    visited = [[False for _ in range(c)] for _ in range(r)]
-    count = 0
+    # Precompute factorials and inverse factorials up to 3999
+    max_fact = 3999
+    fact = [1] * (max_fact + 1)
+    for i in range(1, max_fact + 1):
+        fact[i] = fact[i-1] * i % MOD
     
-    for i in range(r):
-        for j in range(c):
-            if grid[i][j] == 'L' and not visited[i][j]:
-                # BFS to mark all connected land cells
-                queue = deque()
-        
+    inv_fact = [1] * (max_fact + 1)
+    inv_fact[max_fact] = pow(fact[max_fact], MOD - 2, MOD)
+    for i in range(max_fact - 1, -1, -1):
+        inv_fact[i] = in
