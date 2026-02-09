@@ -1,22 +1,15 @@
-target, n = map(int, input().split())
+n, m = map(int, input().split())
 
-# Calculate the sum of squares from 1 to n
-sum_squares = n * (n + 1) * (2 * n + 1) // 6
+max_a = -float('inf')
+for _ in range(n):
+    x, y = map(int, input().split())
+    if x > max_a:
+        max_a = x
 
-if target > sum_squares:
-    print(-1)
-else:
-    remaining = target
-    result = []
-    for i in range(n, 0, -1):
-        square = i * i
-        if square <= remaining:
-            result.append(i)
-            remaining -= square
-            if remaining == 0:
-                break
-    if remaining != 0:
-        print(-1)
-    else:
-        print(len(result))
-        pri
+min_b = float('inf')
+for _ in range(m):
+    x, y = map(int, input().split())
+    if x < min_b:
+        min_b = x
+
+print("YES" if max_a < min_b else "NO")
