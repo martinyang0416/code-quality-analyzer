@@ -1,6 +1,22 @@
-MOD = 10**9 + 7
+s = input().strip()
 
-P, Q = map(int, input().split())
+args = []
+current_arg = []
+state = 'outside'
 
-result = pow(Q + 1, P, MOD) * pow(P + 1, Q, MOD) % MOD
-print(result)
+for char in s:
+    if state == 'outside':
+        if char == ' ':
+            if current_arg:
+                args.append(''.join(current_arg))
+                current_arg = []
+        elif char == '[':
+            if current_arg:
+                args.append(''.join(current_arg))
+                current_arg = []
+            state = 'inside'
+        else:
+            current_arg.append(char)
+    else:
+        if char == ']':
+     
