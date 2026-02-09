@@ -1,11 +1,23 @@
-n = int(input())
-a = list(map(int, input().split()))
-min_candidate = None
+n, f = map(int, input().split())
+s = list(map(int, input().split()))
+t = list(map(int, input().split()))
 
-for x in range(1, 1001):
-    temp = a + [x]
-    temp_sorted = sorted(temp)
-    if min_candidate is None or temp_sorted < min_candidate:
-        min_candidate = temp_sorted.copy()
+# Calculate Alice's score
+alice_total = 0
+alice_time = 0
+for i in range(n):
+    alice_time += t[i]
+    alice_total += s[i] - f * alice_time
 
-print(' '.join(map(str, min_candidate)))
+# Calculate Bob's score
+bob_total = 0
+bob_time = 0
+for i in range(n-1, -1, -1):
+    bob_time += t[i]
+    bob_total += s[i] - f * bob_time
+
+# Compare the totals
+if alice_total > bob_total:
+    print("Alice")
+elif bob_total > alice_total:
+    print("Bob")
