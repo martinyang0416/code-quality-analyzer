@@ -1,24 +1,21 @@
-from collections import defaultdict
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    t = int(input[idx])
+    idx += 1
+    for _ in range(t):
+        n = int(input[idx])
+        k = int(input[idx + 1])
+        idx += 2
+        arr = list(map(int, input[idx:idx + n]))
+        idx += n
 
-m = int(input())
-a = []
-for _ in range(m):
-    s = input().strip()
-    row = [int(c) for c in s]
-    a.append(row)
-
-max_mask = 1 << m
-dp = [[defaultdict(int) for _ in range(m)] for __ in range(max_mask)]
-
-for u in range(m):
-    mask = 1 << u
-    dp[mask][u][0] = 1
-
-masks_by_k = [[] for _ in range(m + 1)]
-for mask in range(max_mask):
-    k = bin(mask).count('1')
-    if 0 < k <= m:
-        masks_by_k[k].append(mask)
-
-for k in range(1, m + 1):
-    for mask in ma
+        # Find the top k elements
+        top_k = sorted(arr, reverse=True)[:k]
+        top_set = set(top_k)
+        count = 0
+        for num in arr[:k]:
+            if num in top_set:
+                count += 1
+       
