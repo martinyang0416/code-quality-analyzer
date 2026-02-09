@@ -1,19 +1,17 @@
-import sys
-from math import gcd
-from collections import Counter
-
-def main():
-    S = sys.stdin.readline().strip()
-    Q = int(sys.stdin.readline())
-    for _ in range(Q):
-        l, r, t = map(int, sys.stdin.readline().split())
-        # Convert to 0-based indices
-        substring = S[l-1:r]  # because r is exclusive in Python's slice
-        n = len(substring)
-        if t == 0:
-            print("No")
-            continue
-        if n == 0:
-            print("Yes")
-            continue
-      
+def build_transition(pattern):
+    len_p = len(pattern)
+    failure = [0] * len_p
+    for i in range(1, len_p):
+        j = failure[i-1]
+        while j > 0 and pattern[i] != pattern[j]:
+            j = failure[j-1]
+        if pattern[i] == pattern[j]:
+            j += 1
+        failure[i] = j
+    transition = [[0]*26 for _ in range(len_p + 1)]
+    for state in range(len_p + 1):
+        for c in range(26):
+            char = chr(ord('a') + c)
+            j = state
+            while True:
+       
