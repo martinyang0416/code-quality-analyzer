@@ -1,22 +1,26 @@
-from collections import defaultdict
-
 def main():
     import sys
-    input = sys.stdin.read
-    data = input().split()
-    N = int(data[0])
-    idx = 1
-    group_seats = defaultdict(list)
-    for _ in range(N):
-        s = int(data[idx])
-        g = int(data[idx+1])
-        group_seats[g].append(s)
-        idx += 2
+    input = sys.stdin.read().split()
+    ptr = 0
+    n = int(input[ptr])
+    ptr += 1
+    m = int(input[ptr])
+    ptr += 1
 
-    # Each group must have at least one seat, so no need to handle empty groups
-    groups = list(group_seats.keys())
-    if len(groups) == 0:
-        print(0)
+    if m < n - 1:
+        print("Impossible")
         return
 
-    # P
+    islands = []
+    for _ in range(n):
+        l = int(input[ptr])
+        ptr += 1
+        r = int(input[ptr])
+        ptr += 1
+        islands.append((l, r))
+
+    s_list = []
+    for i in range(n - 1):
+        l_next = islands[i + 1][0]
+        r_curr = islands[i][1]
+        s = l_ne
