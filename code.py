@@ -1,19 +1,23 @@
-n, m, k = map(int, input().split())
-moves = [tuple(map(int, input().split())) for _ in range(k)]
+n, m = map(int, input().split())
+grid = [list(input().strip()) for _ in range(n)]
 
-added = set()
-result = 0
+flowers = []
+for i in range(n):
+    for j in range(m):
+        if grid[i][j] == 'f':
+            flowers.append((i, j))
 
-for step in range(k):
-    i, j = moves[step]
-    added.add((i, j))
-    
-    # Check all four possible squares that could include (i,j)
-    
-    # Square 1: (i,j) is top-left
-    if i + 1 <= n and j + 1 <= m:
-        if (i, j + 1) in added and (i + 1, j) in added and (i + 1, j + 1) in added:
-            result = step + 1
-            break
-    
-    # Square 2: (i,j) is top-ri
+if not flowers:
+    for row in grid:
+        print(''.join(row))
+    exit()
+
+min_r = min(i for i, j in flowers)
+max_r = max(i for i, j in flowers)
+min_c = min(j for i, j in flowers)
+max_c = max(j for i, j in flowers)
+
+single = (min_r == max_r) and (min_c == max_c)
+
+if single:
+    top = min_r - 1
