@@ -1,24 +1,19 @@
-n, m, k, h = map(int, input().split())
-s = [int(input()) for _ in range(n)]
-swaps = []
-for _ in range(m):
-    a, b = map(int, input().split())
-    swaps.append(a)
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    while True:
+        N = int(input[ptr])
+        ptr += 1
+        if N == 0:
+            break
+        files = {}  # key: I, value: (start, end, E)
+        excl_intervals = []
+        free_intervals = [(0, float('inf'))]  # managed as list of (start, end), start <= end
 
-# Compute the permutation T after applying all swaps
-T = list(range(n))
-for a in swaps:
-    i = a - 1
-    if i >= 0 and i + 1 < n:
-        T[i], T[i+1] = T[i+1], T[i]
-
-# Compute sum_base
-sum_base = sum(s[T[x]] for x in range(k))
-
-min_sum = sum_base
-
-for j in range(m):
-    a = swaps[j]
-    i = a - 1
-    if i < 0 or i + 1 >= n:
-        
+        for _ in range(N):
+            cmd = input[ptr]
+            ptr += 1
+            if cmd == 'W':
+                I = int(input[ptr])
+          
