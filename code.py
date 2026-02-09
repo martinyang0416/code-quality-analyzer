@@ -1,26 +1,17 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    n = int(input[ptr])
-    ptr += 1
-    m = int(input[ptr])
-    ptr += 1
+n, m = map(int, input().split())
+matches = []
+for _ in range(n):
+    hi, mi, ni = map(int, input().split())
+    matches.append((hi, mi, ni))
 
-    if m < n - 1:
-        print("Impossible")
-        return
+# Initialize DP table
+dp = [ [-float('inf')] * (m + 1) for _ in range(n + 1) ]
+dp[0][m] = 0  # Starting with m drinks, 0 matches played
 
-    islands = []
-    for _ in range(n):
-        l = int(input[ptr])
-        ptr += 1
-        r = int(input[ptr])
-        ptr += 1
-        islands.append((l, r))
-
-    s_list = []
-    for i in range(n - 1):
-        l_next = islands[i + 1][0]
-        r_curr = islands[i][1]
-        s = l_ne
+for i in range(1, n + 1):
+    hi, mi, ni = matches[i - 1]
+    for k_prev in range(m + 1):
+        if dp[i - 1][k_prev] != -float('inf'):
+            # Option 1: Use high
+            if k_prev >= 1:
+                new_k =
