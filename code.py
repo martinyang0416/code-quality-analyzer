@@ -1,9 +1,14 @@
-k = int(input())
-nums = list(map(int, input().split()))
+n = int(input())
+arr = list(map(int, input().split()))
+arr.sort()
+current_max = 0
 
-s = {0}
-for num in nums:
-    for current in list(s):
-        s.add(current + num)
+for num in arr:
+    if num == 0:
+        continue
+    if num > current_max + 1:
+        print(current_max + 1)
+        exit()
+    current_max += num
 
-print(len(s))
+print(current_max + 1)
