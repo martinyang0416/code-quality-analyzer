@@ -1,15 +1,19 @@
-n = int(input())
-collection = set()
+import sys
 
-for _ in range(n):
-    op = input().split()
-    if op[0] == '+':
-        v = int(op[1])
-        collection.add(v)
-    elif op[0] == '-':
-        v = int(op[1])
-        collection.discard(v)
-    elif op[0] == '?':
-        p = op[1]
-        x = int(p, 2)
-        print(1 if x in collection else 0)
+def compute_spf(max_y):
+    spf = [0] * (max_y + 1)
+    spf[1] = 1
+    for i in range(2, max_y + 1):
+        if spf[i] == 0:
+            spf[i] = i
+            for j in range(i*i, max_y + 1, i):
+                if spf[j] == 0:
+                    spf[j] = i
+    # Handle cases where spf is still 0 (which shouldn't happen except for 1)
+    # However, double-checking all numbers
+    for i in range(2, max_y + 1):
+        if spf[i] == 0:
+            spf[i] = i
+    return spf
+
+def main():
