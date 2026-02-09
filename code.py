@@ -1,20 +1,20 @@
+import sys
+from collections import deque
+
 def main():
-    import sys
-    n = int(sys.stdin.readline())
-    p = list(map(int, sys.stdin.readline().split()))
-    visited = [False] * n
-    cycle_count = 0
-
-    for i in range(n):
-        if not visited[i]:
-            cycle_count += 1
-            current = i
-            while not visited[current]:
-                visited[current] = True
-                next_pos = p[current] - 1
-                current = next_pos
-
-    print(n - cycle_count)
-
-if __name__ == "__main__":
-    main()
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        n, C = int(input[idx]), int(input[idx+1])
+        idx +=2
+        edges = [[] for _ in range(n+1)]
+        degree = [0]*(n+1)
+        for _ in range(n-1):
+            v = int(input[idx])
+            u = int(input[idx+1])
+            c = int(input[idx+2])
+            idx +=3
+            edges[v].append(u)
+            edges[u].ap
