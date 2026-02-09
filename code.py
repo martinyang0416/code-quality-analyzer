@@ -1,17 +1,26 @@
-W, H = map(int, input().split())
-grid = [list(map(int, input().split())) for _ in range(H)]
+import bisect
 
-perimeter = 0
-directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-
-for i in range(H):
-    for j in range(W):
-        if grid[i][j] == 1:
-            for d in directions:
-                ni = i + d[0]
-                nj = j + d[1]
-                if ni < 0 or ni >= H or nj < 0 or nj >= W:
-                    perimeter += 1
-                else:
-                    if grid[ni][nj] == 0:
-                       
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    idx = 0
+    n = int(data[idx])
+    k = int(data[idx + 1])
+    idx += 2
+    
+    e = list(map(int, data[idx:idx + n]))
+    idx += n
+    
+    conflicts = [[] for _ in range(n)]
+    for _ in range(k):
+        x = int(data[idx]) - 1
+        y = int(data[idx + 1]) - 1
+        idx += 2
+        conflicts[x].append(y)
+        conflicts[y].append(x)
+    
+    sorted_e = sorted(e)
+    result = [0] * n
+ 
