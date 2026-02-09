@@ -1,20 +1,20 @@
-def calculate_net_sales(S):
-    slabs = [
-        (100000, 0),
-        (100000, 5),
-        (100000, 10),
-        (100000, 15),
-        (100000, 20),
-        (100000, 25),
-        (None, 30)
-    ]
-    tax = 0
-    remaining = S
-    for max_amount, rate in slabs:
-        if remaining <= 0:
-            break
-        if max_amount is None:
-            amount = remaining
+import bisect
+
+n, m = map(int, input().split())
+x = list(map(int, input().split()))
+f = list(map(int, input().split()))
+
+stalls = [x[i] for i in range(len(f)) if f[i] == 1]
+counts = [0] * len(stalls)
+
+for i in range(len(x)):
+    if f[i] == 0:
+        x_c = x[i]
+        pos = bisect.bisect_left(stalls, x_c)
+        if pos == 0:
+            counts[0] += 1
+        elif pos == len(stalls):
+            counts[-1] += 1
         else:
-            amount = min(max_amount, remaining)
-        tax += (amount * rate) // 100  # Using integer division as pe
+            d_left = x_c - stalls[pos-1]
+            d_right = stalls
