@@ -1,19 +1,14 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    while True:
-        N = int(input[ptr])
-        ptr += 1
-        if N == 0:
-            break
-        files = {}  # key: I, value: (start, end, E)
-        excl_intervals = []
-        free_intervals = [(0, float('inf'))]  # managed as list of (start, end), start <= end
+n = int(input())
+directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # North, East, South, West
 
-        for _ in range(N):
-            cmd = input[ptr]
-            ptr += 1
-            if cmd == 'W':
-                I = int(input[ptr])
-          
+while n != -1:
+    steps = 2 * n
+    x, y = 0, 0
+    for j in range(steps):
+        dir_idx = j % 4
+        dx, dy = directions[dir_idx]
+        x += dx
+        y += dy
+    print(x)
+    print(y)
+    n = int(input())
