@@ -1,17 +1,20 @@
-W, H = map(int, input().split())
-grid = [list(map(int, input().split())) for _ in range(H)]
+from collections import deque
+import sys
 
-perimeter = 0
-directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-
-for i in range(H):
-    for j in range(W):
-        if grid[i][j] == 1:
-            for d in directions:
-                ni = i + d[0]
-                nj = j + d[1]
-                if ni < 0 or ni >= H or nj < 0 or nj >= W:
-                    perimeter += 1
-                else:
-                    if grid[ni][nj] == 0:
-                       
+def main():
+    w, h = map(int, sys.stdin.readline().split())
+    grid = [list(sys.stdin.readline().strip()) for _ in range(h)]
+    
+    # Find the starting position of 'R'
+    start = None
+    for i in range(h):
+        for j in range(w):
+            if grid[i][j] == 'R':
+                start = (i, j)
+                break
+        if start:
+            break
+    
+    # Calculate total number of floor cells (including 'R')
+    total_floor = 0
+    for i 
