@@ -1,14 +1,19 @@
-n, b = map(int, input().split())
-v = int(input())
-max_h = 0.0
-
-for _ in range(n):
-    x, h = map(int, input().split())
-    if v < x < b:
-        numerator = h * (b - v)
-        denominator = x - v
-        H = numerator / denominator
-        if H > max_h:
-            max_h = H
-
-print("{0:.6f}".format(max_h))
+def main():
+    import sys
+    title = sys.stdin.readline().strip()
+    title_upper = title.upper()
+    
+    # Define the groups based on traditional phone keypad layout
+    groups = {
+        '2': 'ABC',
+        '3': 'DEF',
+        '4': 'GHI',
+        '5': 'JKL',
+        '6': 'MNO',
+        '7': 'PQRS',
+        '8': 'TUV',
+        '9': 'WXYZ'
+    }
+    
+    # Create a mapping from each character to its corresponding number
+    mapping = {char: key for key, value in groups.items() for char in va
