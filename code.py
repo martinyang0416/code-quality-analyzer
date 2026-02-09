@@ -1,22 +1,17 @@
-import heapq
+n = int(input())
+t = input().strip()
 
-def main():
-    w, h, limit = map(int, input().split())
-    grid = []
-    for _ in range(h):
-        row = input().strip().split()
-        grid.append(row)
-    
-    # Find the start and end positions
-    start = None
-    end = None
-    for j in range(w):
-        if grid[0][j] == 'S':
-            start = (0, j)
-    for j in range(w):
-        if grid[-1][j] == 'T':
-            end = (h-1, j)
-    
-    # Create the cost grid
-    cost = [[0 for _ in range(w)] for _ in range(h)]
-    for 
+s = []
+index = 0
+group_size = 1
+
+while index < len(t):
+    # Extract the group of current group_size
+    group = t[index:index + group_size]
+    # Append the first character of the group to s
+    s.append(group[0])
+    # Move to the next group
+    index += group_size
+    group_size += 1
+
+print(''.join(s))
