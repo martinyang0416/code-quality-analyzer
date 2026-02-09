@@ -1,23 +1,21 @@
-def factorize(k):
-    factors = {}
-    for i in range(2, int(k**0.5) + 1):
-        while k % i == 0:
-            factors[i] = factors.get(i, 0) + 1
-            k = k // i
-    if k > 1:
-        factors[k] = 1
-    return factors
-
-n, k = map(int, input().split())
-b = list(map(int, input().split()))
-
-factors = factorize(k)
-primes = list(factors.keys())
-required = factors
-
-sum_exponents = {p: 0 for p in primes}
-
-for num in b:
-    for p in primes:
-        cnt = 0
-        temp = num  # Create a tempora
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    n = int(input[0])
+    a = list(map(int, input[1:n+1]))
+    
+    steps = 0
+    while True:
+        next_a = a.copy()
+        changed = False
+        for i in range(1, n-1):
+            s = a[i-1] + a[i] + a[i+1]
+            new_val = 1 if s >= 2 else 0
+            if new_val != a[i]:
+                changed = True
+                next_a[i] = new_val
+        if not changed:
+            break
+        a = next_a
+        steps += 1
+ 
