@@ -1,10 +1,19 @@
-t = int(input())
-for _ in range(t):
-    n, k = map(int, input().split())
-    a = list(map(int, input().split()))
-    dp = [0] * (k + 1)
-    dp[0] = 1
-    for num in a:
-        for s in range(k, num - 1, -1):
-            dp[s] += dp[s - num]
-    print(dp[k])
+def count_trimensional_coordinates(n, a, b, c):
+    l1 = a + 1
+    r1 = a + n
+    l2 = b + 1
+    r2 = b + n
+    l3 = c + 1
+    r3 = c + n
+
+    lower = max(l1, l2, l3)
+    upper = min(r1, r2, r3)
+
+    if lower > upper:
+        return 0
+    else:
+        return upper - lower + 1
+
+# Read input
+n, a, b, c = map(int, input().split())
+print(count_trimensional_coordinates(n, a, b, c))
