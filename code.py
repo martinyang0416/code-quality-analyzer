@@ -1,22 +1,22 @@
-def minimal_games():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    t = int(data[0])
-    index = 1
-    for _ in range(t):
-        w = int(data[index])
-        l = int(data[index+1])
-        p = int(data[index+2])
-        q = int(data[index+3])
-        index +=4
-        
-        if p == q:
-            # Desired rate is 1
-            if l == 0:
-                print(0)
-            else:
-                print(-1)
-            continue
-        if p == 0:
-            if q != 
+n, r, s = map(int, input().split())
+books = list(map(int, input().split()))
+books.sort()
+
+count = 0
+
+for b in books:
+    if r < 0 or s < 0:
+        continue
+    initial_a = min(r, b // 3)
+    rem = b - initial_a * 3
+    if rem <= s:
+        count += 1
+        r -= initial_a
+        s -= rem
+    else:
+        numerator = b - s + 2
+        required_a_min = numerator // 3
+        required_a_min = max(required_a_min, 0)
+        available_a = min(r, b // 3)
+        if available_a >= required_a_min:
+ 
