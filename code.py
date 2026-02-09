@@ -1,19 +1,15 @@
 import sys
 
-def compute_spf(max_y):
-    spf = [0] * (max_y + 1)
-    spf[1] = 1
-    for i in range(2, max_y + 1):
-        if spf[i] == 0:
-            spf[i] = i
-            for j in range(i*i, max_y + 1, i):
-                if spf[j] == 0:
-                    spf[j] = i
-    # Handle cases where spf is still 0 (which shouldn't happen except for 1)
-    # However, double-checking all numbers
-    for i in range(2, max_y + 1):
-        if spf[i] == 0:
-            spf[i] = i
-    return spf
-
 def main():
+    m, r = map(int, sys.stdin.readline().split())
+    pages = list(map(int, sys.stdin.readline().split()))
+    weights = list(map(int, sys.stdin.readline().split()))
+    
+    # Calculate the delta for each book: delta = weight - r * pages
+    dp = {0: 0}  # key: current delta, value: max weight for this delta
+    
+    for p, w in zip(pages, weights):
+        delta_i = w - r * p
+        temp = {}
+        # Iterate through existing deltas in dp
+        for current_d in dp:
