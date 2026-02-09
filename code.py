@@ -1,16 +1,24 @@
-n = int(input())
-s = input().strip()
+n, m, k, h = map(int, input().split())
+s = [int(input()) for _ in range(n)]
+swaps = []
+for _ in range(m):
+    a, b = map(int, input().split())
+    swaps.append(a)
 
-count_ab = 0
-count_ba = 0
+# Compute the permutation T after applying all swaps
+T = list(range(n))
+for a in swaps:
+    i = a - 1
+    if i >= 0 and i + 1 < n:
+        T[i], T[i+1] = T[i+1], T[i]
 
-for i in range(n - 1):
-    current = s[i]
-    next_char = s[i + 1]
-    if current != next_char:
-        if current == 'A':
-            count_ab += 1
-        else:
-            count_ba += 1
+# Compute sum_base
+sum_base = sum(s[T[x]] for x in range(k))
 
-print("YES" if count_ab > count_ba else "NO")
+min_sum = sum_base
+
+for j in range(m):
+    a = swaps[j]
+    i = a - 1
+    if i < 0 or i + 1 >= n:
+        
