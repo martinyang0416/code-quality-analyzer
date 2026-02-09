@@ -1,23 +1,13 @@
-import sys
+n = int(input())
+a = list(map(int, input().split()))
+min_shots = float('inf')
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    t = int(input[idx])
-    idx += 1
-    for _ in range(t):
-        n = int(input[idx])
-        idx +=1
-        s = input[idx]
-        idx +=1
-        positions = []
-        for i, c in enumerate(s):
-            if c == '#':
-                positions.append(i)
-        k = len(positions)
-        if k <= 1:
-            print(0)
-            continue
-        # Compute q_i = positions[i] - i
-        q = [positions
+for i in range(n - 2):
+    left = a[i]
+    mid = a[i + 1]
+    right = a[i + 2]
+    required = max(left, right, (mid + 2) // 3)
+    if required < min_shots:
+        min_shots = required
+
+print(min_shots)
