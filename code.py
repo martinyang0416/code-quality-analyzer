@@ -1,20 +1,27 @@
-n = int(input())
-scores = list(map(int, input().split()))
-scores.sort()
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    M = int(input[idx])
+    idx += 1
 
-max_rating = 0
-for R in range(n, 0, -1):
-    # Binary search to find the first index where score >= R
-    left, right = 0, n
-    while left < right:
-        mid = (left + right) // 2
-        if scores[mid] >= R:
-            right = mid
-        else:
-            left = mid + 1
-    count = n - left
-    if count >= R:
-        max_rating = R
-        break
+    D = []
+    for _ in range(N):
+        D.append(int(input[idx]))
+        idx += 1
 
-print(max_rating)
+    W = []
+    for _ in range(M):
+        W.append(int(input[idx]))
+        idx += 1
+
+    INF = float('inf')
+    dp = [ [INF] * (M + 1) for _ in range(N + 1) ]
+    dp[0][0] = 0
+
+    for i in range(1, N + 1):
+        d = D[i - 1]
+        current_min = INF
+        
