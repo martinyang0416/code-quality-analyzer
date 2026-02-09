@@ -1,21 +1,20 @@
-import heapq
 import sys
-from collections import defaultdict
+from collections import deque
 
 def main():
     input = sys.stdin.read().split()
     ptr = 0
-    n = int(input[ptr]); ptr +=1
-    m = int(input[ptr]); ptr +=1
-    L = int(input[ptr]); ptr +=1
-    s = int(input[ptr]); ptr +=1
-    t = int(input[ptr]); ptr +=1
+    N = int(input[ptr]); ptr +=1
+    X = int(input[ptr]); ptr +=1
+    Y = int(input[ptr]); ptr +=1
 
-    edges = []
-    adj_fixed = [[] for _ in range(n)]
-    adj_S = [[] for _ in range(n)]
-    original_edges = []
-    for _ in range(m):
-        u = int(input[ptr]); ptr +=1
-        v = int(input[ptr]); ptr +=1
-  
+    towns = []
+    for _ in range(N):
+        K = int(input[ptr]); ptr +=1
+        sweets = []
+        for __ in range(K):
+            a = int(input[ptr]); ptr +=1
+            b = int(input[ptr]); ptr +=1
+            c = int(input[ptr]); ptr +=1
+            sweets.append( (a, b, c) )
+        town
