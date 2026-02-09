@@ -1,23 +1,13 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    L = int(input[idx])
-    idx += 1
-    for _ in range(L):
-        M = int(input[idx])
-        idx += 1
-        P = int(input[idx])
-        idx += 1
-        n = M + P - 1
-        k = P
-        if k == 0:
-            print(1 % 1000000000)
-            continue
-        result = 1
-        for i in range(1, k + 1):
-            result = result * (n - i + 1) // i
-        print(result % 1000000000)
+n, k = map(int, input().split())
 
-if __name__ == "__main__":
- 
+count_div3 = n // 3
+
+if k <= count_div3:
+    print(3 * k)
+else:
+    m = k - count_div3
+    # Calculate the m-th non-divisible number
+    g = (m - 1) // 2
+    r = (m - 1) % 2 + 1
+    x = 3 * g + r
+    print(x)
