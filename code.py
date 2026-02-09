@@ -1,23 +1,27 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    L = int(input[idx])
-    idx += 1
-    for _ in range(L):
-        M = int(input[idx])
-        idx += 1
-        P = int(input[idx])
-        idx += 1
-        n = M + P - 1
-        k = P
-        if k == 0:
-            print(1 % 1000000000)
-            continue
-        result = 1
-        for i in range(1, k + 1):
-            result = result * (n - i + 1) // i
-        print(result % 1000000000)
+n = int(input())
+ages = list(map(int, input().split()))
 
-if __name__ == "__main__":
- 
+evens = []
+odds = []
+
+for idx in range(n):
+    if ages[idx] % 2 == 0:
+        evens.append(idx + 1)  # Using 1-based index
+    else:
+        odds.append(idx + 1)
+
+even_count = len(evens)
+odd_count = len(odds)
+
+impossible = False
+if even_count > 0 and even_count < 4:
+    impossible = True
+if odd_count > 0 and odd_count < 4:
+    impossible = True
+
+if impossible:
+    print("Impossible")
+else:
+    tables = []
+    if even_count >= 4:
+        ta
