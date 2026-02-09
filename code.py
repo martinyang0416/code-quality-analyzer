@@ -1,17 +1,19 @@
-def build_transition(pattern):
-    len_p = len(pattern)
-    failure = [0] * len_p
-    for i in range(1, len_p):
-        j = failure[i-1]
-        while j > 0 and pattern[i] != pattern[j]:
-            j = failure[j-1]
-        if pattern[i] == pattern[j]:
-            j += 1
-        failure[i] = j
-    transition = [[0]*26 for _ in range(len_p + 1)]
-    for state in range(len_p + 1):
-        for c in range(26):
-            char = chr(ord('a') + c)
-            j = state
-            while True:
-       
+from collections import defaultdict
+
+def count_balanced_substrings(s):
+    balance = 0
+    prefix_counts = defaultdict(int)
+    prefix_counts[0] = 1  # To handle the empty prefix
+    result = 0
+
+    for char in s:
+        if char == 'a':
+            balance += 1
+        else:
+            balance -= 1
+
+        # Add the number of times this balance was seen before to the result
+        result += prefix_counts.get(balance, 0)
+
+        # Update the count for the current balance
+        prefix_count
