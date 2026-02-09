@@ -1,16 +1,19 @@
-def main():
-    import sys
-    X, Y = map(int, sys.stdin.readline().split())
-    max_n = Y
-    
-    # Compute smallest prime factors (spf) for all numbers up to max_n
-    spf = [0] * (max_n + 1)
-    for i in range(2, max_n + 1):
-        if spf[i] == 0:
-            spf[i] = i
-            for j in range(i * i, max_n + 1, i):
-                if spf[j] == 0:
-                    spf[j] = i
-    
-    # Compute the dp array where dp[n] is the maximum depth of the tree rooted at n
-    dp = [0] * (max_n +
+import sys
+
+def longest_common_substring(s1, s2):
+    s1 = s1.lower()
+    s2 = s2.lower()
+    n = len(s1)
+    m = len(s2)
+    max_length = 0
+    prev_row = [0] * (m + 1)
+    for i in range(n):
+        current_row = [0] * (m + 1)
+        for j in range(m):
+            if s1[i] == s2[j]:
+                current_row[j+1] = prev_row[j] + 1
+                if current_row[j+1] > max_length:
+                    max_length = current_row[j+1]
+            else:
+                current_row[j+1] = 0
+       
