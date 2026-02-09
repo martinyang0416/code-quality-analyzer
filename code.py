@@ -1,14 +1,20 @@
-n = int(input())
-islands = set()
-for _ in range(n):
-    x, y = map(int, input().split())
-    islands.add((x, y))
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    index = 1
+    for _ in range(T):
+        S = input[index]
+        index += 1
+        flips = 0
+        res = 0
+        for c in S:
+            val = int(c)
+            actual = val ^ (flips % 2)
+            if actual == 1:
+                res += 1
+                flips += 1
+        print(res)
 
-total = 0
-
-for x, y in islands:
-    for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-        if (x + dx, y + dy) not in islands:
-            total += 1
-
-print(total)
+if __name__ == "__main__":
+    main()
