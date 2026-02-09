@@ -1,15 +1,31 @@
-def count_odd_pairs(s):
-    even = 0
-    odd = 0
-    for char in s:
-        pos = ord(char) - ord('a') + 1
-        if pos % 2 == 0:
-            even += 1
-        else:
-            odd += 1
-    return even * odd
+n, k = map(int, input().split())
+s = input().strip()
 
-T = int(input())
-for _ in range(T):
-    S = input().strip()
-    print(count_odd_pairs(S))
+if n == 0:
+    print(0)
+    exit()
+
+# Create runs list
+runs = []
+current = s[0]
+count = 1
+for c in s[1:]:
+    if c == current:
+        count += 1
+    else:
+        runs.append((current, count))
+        current = c
+        count = 1
+runs.append((current, count))
+
+max_len = 0
+current_sum = 0
+b_count = 0
+left = 0
+
+for right in range(len(runs)):
+    char, length = runs[right]
+    if char == 'b':
+        b_count += 1
+    current_sum += length
+    
