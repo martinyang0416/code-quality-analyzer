@@ -1,20 +1,29 @@
-import sys
-from collections import deque
+t = int(input())
+test_cases = []
+max_N = 0
+for _ in range(t):
+    n = int(input())
+    test_cases.append(n)
+    if n > max_N:
+        max_N = n
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    dangerous = set()
-    if m > 0:
-        dangerous.update(map(int, sys.stdin.readline().split()))
+k_max = max_N - 1
+
+if k_max < 0:
+    dp = [0]
+else:
+    dp = [0] * (k_max + 1)
+    dp[0] = 1
+    if k_max >= 1:
+        dp[1] = 1
+    if k_max >= 2:
+        dp[2] = 1
+    for k in range(3, k_max + 1):
+        dp[k] = dp[k - 1] + dp[k - 3]
+
+for n in test_cases:
+    k = n - 1
+    if k < 0:
+        print(0)
     else:
-        sys.stdin.readline()  # consume the line
-
-    # Build adjacency list
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        u, v = map(int, sys.stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
-
-    visited = [False] * (n + 1)
-    tot
+        print(dp[k])
