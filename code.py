@@ -1,23 +1,31 @@
-def solve():
-    import sys
-    from collections import defaultdict
+n, k = map(int, input().split())
+s = input().strip()
 
-    t = sys.stdin.readline().strip()
-    k = int(sys.stdin.readline())
+if n == 0:
+    print(0)
+    exit()
 
-    n = len(t)
-    cnt = defaultdict(int)
-    for c in t:
-        cnt[c] += 1
+# Create runs list
+runs = []
+current = s[0]
+count = 1
+for c in s[1:]:
+    if c == current:
+        count += 1
+    else:
+        runs.append((current, count))
+        current = c
+        count = 1
+runs.append((current, count))
 
-    divisors = set()
-    for d in range(1, int(k**0.5) + 1):
-        if k % d == 0:
-            if d <= n:
-                divisors.add(d)
-            if (k // d) <= n:
-                divisors.add(k // d)
-    divisors = sorted(divisors)
+max_len = 0
+current_sum = 0
+b_count = 0
+left = 0
 
-    required = defaultdict(list)
-    for 
+for right in range(len(runs)):
+    char, length = runs[right]
+    if char == 'b':
+        b_count += 1
+    current_sum += length
+    
