@@ -1,19 +1,22 @@
-from collections import deque
-import sys
-
 def main():
-    r, c = map(int, sys.stdin.readline().split())
-    grid = []
-    for _ in range(r):
-        row = list(sys.stdin.readline().strip())
-        grid.append(row)
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    W = int(input[ptr])
+    ptr +=1
+    H = int(input[ptr])
+    ptr +=1
+    v = list(map(int, input[ptr:ptr+W-1]))
+    ptr += W-1
+    h = list(map(int, input[ptr:ptr+H-1]))
+    ptr += H-1
     
-    visited = [[False for _ in range(c)] for _ in range(r)]
-    count = 0
+    # Calculate the position to split vertically
+    split_v = (W // 2) -1
+    sum_v = sum(v[:split_v +1])
     
-    for i in range(r):
-        for j in range(c):
-            if grid[i][j] == 'L' and not visited[i][j]:
-                # BFS to mark all connected land cells
-                queue = deque()
-        
+    # Calculate the position to split horizontally
+    split_h = (H // 2) -1
+    sum_h = sum(h[:split_h +1])
+    
+    t
