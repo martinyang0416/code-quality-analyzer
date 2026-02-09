@@ -1,22 +1,19 @@
-import heapq
+import sys
 
 def main():
-    n, m = map(int, input().split())
-    adj = [[] for _ in range(n)]
-    for _ in range(m):
-        u, v, w = map(int, input().split())
-        adj[u].append((v, w))
-        adj[v].append((u, w))
-    s = int(input())
-    
-    INF = float('inf')
-    distance = [INF] * n
-    distance[s] = 0
-    heap = [(0, s)]
-    
-    while heap:
-        current_dist, u = heapq.heappop(heap)
-        if current_dist > distance[u]:
-            continue
-        for v, w in adj[u]:
+    while True:
+        line = sys.stdin.readline()
+        if not line:
+            break
+        n = int(line.strip())
+        if n == 0:
+            break
+        colors = list(map(int, sys.stdin.readline().strip().split()))
+        dp = [[0] * n for _ in range(n)]
         
+        for l in range(2, n+1):
+            for i in range(n - l + 1):
+                j = i + l - 1
+                max_val = 0
+                # Check pair starting at i
+                if colors[
