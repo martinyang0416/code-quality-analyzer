@@ -1,25 +1,22 @@
-import sys
-from collections import deque
+M = int(input())
+scores = list(map(int, input().split()))
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
+sum_suffix = [0] * M
+min_suffix = [0] * M
 
-    m = int(input[ptr])
-    ptr += 1
+sum_suffix[-1] = scores[-1]
+min_suffix[-1] = scores[-1]
 
-    if m == 1:
-        # Only root node, but m >=2 per problem statement
-        pass
-    else:
-        p = list(map(int, input[ptr:ptr + (m - 1)]))
-        ptr += (m - 1)
+for i in range(M-2, -1, -1):
+    sum_suffix[i] = sum_suffix[i+1] + scores[i]
+    min_suffix[i] = min(scores[i], min_suffix[i+1])
 
-    # Build adjacency list
-    adj = [[] for _ in range(m + 1)]
-    for i in range(2, m + 1):
-        parent = p[i - 2]
-        adj[i].append(parent)
-        adj[parent].append(i)
+max_avg = -1
+best_P = []
 
-    
+for P in range(M):
+    n = M - P
+    if n < 2:
+        continue  # Not enough scores to drop one and average the rest
+    total = sum_suffix[P] - min_suffix[P]
+    avg = total / (n - 1)
