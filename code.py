@@ -1,19 +1,22 @@
-import itertools
-
 def main():
-    n = int(input())
-    phrases = [input().strip() for _ in range(n)]
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    N = int(data[0])
+    Y = int(data[1])
+    G = list(map(int, data[2:2+N]))
     
-    vowels = 'aeiou'
-    max_length = 0
+    # Transform the array
+    A = [g - Y for g in G]
     
-    # Generate all possible subsets of 1 or 2 vowels
-    for r in range(1, 3):
-        for subset in itertools.combinations(vowels, r):
-            allowed = set(subset)
-            total = 0
-            for phrase in phrases:
-                phrase_vowels = set()
-                for c in phrase:
-                    if c in vowels:
-               
+    # Compute prefix sums
+    prefix = [0] * (N + 1)
+    for i in range(1, N + 1):
+        prefix[i] = prefix[i - 1] + A[i - 1]
+    
+    # Collect all prefix sums and sort them
+    prefix_sums = prefix.copy()
+    sorted_prefix = sorted(prefix_sums)
+    
+    # Assign ranks
+    r
