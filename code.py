@@ -1,20 +1,15 @@
-import sys
-from collections import deque
+n = int(input())
+MOD = 10**9 + 7
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    dangerous = set()
-    if m > 0:
-        dangerous.update(map(int, sys.stdin.readline().split()))
-    else:
-        sys.stdin.readline()  # consume the line
+max_fact = 2 * n
+fact = [1] * (max_fact + 1)
+for i in range(1, max_fact + 1):
+    fact[i] = fact[i-1] * i % MOD
 
-    # Build adjacency list
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        u, v = map(int, sys.stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
+term = fact[2 * n]
+term = term * pow(fact[n], MOD - 2, MOD) % MOD
+term = term * pow(fact[n], MOD - 2, MOD) % MOD
 
-    visited = [False] * (n + 1)
-    tot
+term = term * pow(n + 1, MOD - 2, MOD) % MOD
+
+print(term)
