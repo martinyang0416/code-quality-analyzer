@@ -1,17 +1,16 @@
 n = int(input())
-L = list(map(int, input().split()))
-path = [0] + L + [0]
+s = input().strip()
 
-original = 0
-for i in range(1, len(path)):
-    original += abs(path[i] - path[i-1])
+count_ab = 0
+count_ba = 0
 
-for i in range(1, n+1):
-    pre = path[i-1]
-    curr = path[i]
-    next_val = path[i+1]
-    a = abs(curr - pre)
-    b = abs(next_val - curr)
-    c = abs(next_val - pre)
-    new_dist = original - a - b + c
-    print(new_dist)
+for i in range(n - 1):
+    current = s[i]
+    next_char = s[i + 1]
+    if current != next_char:
+        if current == 'A':
+            count_ab += 1
+        else:
+            count_ba += 1
+
+print("YES" if count_ab > count_ba else "NO")
