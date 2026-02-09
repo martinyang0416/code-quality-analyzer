@@ -1,21 +1,26 @@
-n, q = map(int, input().split())
+import sys
+from collections import defaultdict
 
-lower = [1] * (n + 1)  # 1-based indexing
-upper = [n] * (n + 1)
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    p = int(data[idx])
+    idx += 1
+    b = int(data[idx])
+    idx += 1
 
-for _ in range(q):
-    t, l, r, v = map(int, input().split())
-    if t == 1:
-        # At least v, update lower bound
-        for i in range(l, r + 1):
-            if lower[i] < v:
-                lower[i] = v
-    else:
-        # At most v, update upper bound
-        for i in range(l, r + 1):
-            if upper[i] > v:
-                upper[i] = v
-
-# Check for feasibility
-possible = True
-for i in
+    blocked = set()
+    for _ in range(b):
+        x = int(data[idx])
+        idx += 1
+        y = int(data[idx])
+        idx += 1
+        blocked.add((x, y))
+    
+    # Check if start or end is blocked
+    start = (p, p)
+    end = (1, 1)
+    if start in blocked or end in blocked:
+        print(-1)
+ 
