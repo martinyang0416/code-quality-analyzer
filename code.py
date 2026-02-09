@@ -1,20 +1,19 @@
 import math
+import itertools
 
-def main():
-    n = int(input())
-    nums = [int(input()) for _ in range(n)]
-    
-    non_zero = [x for x in nums if x != 0]
-    zeros = [x for x in nums if x == 0]
-    
-    # Custom key function for sorting
-    def sort_key(x):
-        if x == 0:
-            return (0, x)  # Not used here since non_zero has no zeros
-        return (-(math.log(x) / x), x)
-    
-    # Sort the non-zero elements
-    non_zero_sorted = sorted(non_zero, key=sort_key)
-    
-    # Combine and output
-    resu
+n = int(input())
+radii = [int(input()) for _ in range(n)]
+
+max_circumference = 0.0
+
+for k in range(3, n + 1):
+    for subset in itertools.combinations(radii, k):
+        sum_r = sum(subset)
+        for arrangement in itertools.permutations(subset):
+            valid = True
+            for i in range(k):
+                a = arrangement[i]
+                b = arrangement[(i + 1) % k]
+                if a + b >= sum_r:
+                    valid = False
+                
