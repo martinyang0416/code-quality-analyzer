@@ -1,25 +1,22 @@
-def count_divisors(x):
-    if x == 1:
-        return 1
-    count = 1
-    i = 2
-    while i * i <= x:
-        exponent = 0
-        while x % i == 0:
-            exponent += 1
-            x = x // i
-        if exponent > 0:
-            count *= (exponent + 1)
-        i += 1
-    if x > 1:
-        count *= 2
-    return count
+M = int(input())
+scores = list(map(int, input().split()))
 
-n = int(input())
-lst = list(map(int, input().split()))
-counts = [count_divisors(x) for x in lst]
+sum_suffix = [0] * M
+min_suffix = [0] * M
 
-from collections import defaultdict
-freq = defaultdict(int)
-for c in counts:
- 
+sum_suffix[-1] = scores[-1]
+min_suffix[-1] = scores[-1]
+
+for i in range(M-2, -1, -1):
+    sum_suffix[i] = sum_suffix[i+1] + scores[i]
+    min_suffix[i] = min(scores[i], min_suffix[i+1])
+
+max_avg = -1
+best_P = []
+
+for P in range(M):
+    n = M - P
+    if n < 2:
+        continue  # Not enough scores to drop one and average the rest
+    total = sum_suffix[P] - min_suffix[P]
+    avg = total / (n - 1)
