@@ -1,23 +1,24 @@
-def minimal_cost():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    
-    t = int(data[0])
-    idx = 1
-    for _ in range(t):
-        n = int(data[idx])
-        idx += 1
-        c = list(map(int, data[idx:idx+n]))
-        idx += n
-        
-        prefix = [0] * (n + 1)
-        for i in range(1, n+1):
-            prefix[i] = prefix[i-1] + c[i-1]
-        
-        if n == 0:
-            print(0)
-            continue
-        
-        right_dp = [0] * (n + 1)
-        min_righ
+n = int(input())
+parts = {}
+for _ in range(n):
+    part, cost = input().split()
+    cost = int(cost)
+    parts[part] = cost
+
+m = int(input())
+assembly = {}
+for _ in range(m):
+    # Split the line into machine, k, and components
+    parts_line = input().split()
+    machine = parts_line[0]
+    k = int(parts_line[1])
+    components = parts_line[2:2 + k]
+    assembly[machine] = components
+
+target = input().strip()
+
+computed = {}
+
+def compute_min(part):
+    if part in computed:
+        return compute
