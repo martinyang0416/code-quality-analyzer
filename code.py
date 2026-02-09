@@ -1,22 +1,23 @@
 import sys
 
 def main():
+    import sys
     input = sys.stdin.read().split()
     idx = 0
-    n = int(input[idx])
+    t = int(input[idx])
     idx += 1
-    for _ in range(n):
-        p = int(input[idx])
-        q = int(input[idx+1])
-        m = int(input[idx+2])
-        idx += 3
-        
-        B = m
-        numerator = (m - 1) + B * q
-        denominator = p - 1
-        a = (numerator + denominator - 1) // denominator
-        total = a + B
-        print(total)
-        
-if __name__ == "__main__":
-    main()
+    for _ in range(t):
+        n = int(input[idx])
+        idx +=1
+        s = input[idx]
+        idx +=1
+        positions = []
+        for i, c in enumerate(s):
+            if c == '#':
+                positions.append(i)
+        k = len(positions)
+        if k <= 1:
+            print(0)
+            continue
+        # Compute q_i = positions[i] - i
+        q = [positions
