@@ -1,14 +1,18 @@
-n = int(input())
-degrees = [0] * (n + 1)
-for _ in range(n - 1):
-    u, v = map(int, input().split())
-    degrees[u] += 1
-    degrees[v] += 1
+M, N = map(int, input().split())
+diff = [0] * (M + 2)  # 1-based indexing, size M+2
 
-s = 0
-for i in range(1, n + 1):
-    d = degrees[i]
-    s += d * (d - 1) // 2
+for _ in range(N):
+    A, B, C = map(int, input().split())
+    diff[A] += C
+    if B + 1 <= M:
+        diff[B + 1] -= C
 
-total = (n - 1) + s
-print(total)
+max_height = 0
+current = 0
+
+for i in range(1, M + 1):
+    current += diff[i]
+    if current > max_height:
+        max_height = current
+
+print(max_height)
