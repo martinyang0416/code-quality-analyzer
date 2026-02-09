@@ -1,15 +1,23 @@
-s = input().strip()
-vowels = {'a', 'e', 'i', 'o', 'u'}
-v_count = 0
-c_count = 0
+n, k = map(int, input().split())
+events = []
+for _ in range(n):
+    l, r = map(int, input().split())
+    events.append((l, 1))
+    events.append((r + 1, -1))
 
-for char in s:
-    if char in vowels:
-        v_count += 1
-    else:
-        c_count += 1
+events.sort()
 
-if v_count == c_count:
-    print("Balanced")
-else:
-    print("Unbalanced")
+result = 0
+current_coverage = 0
+prev_x = None
+
+MOD = 10**9 + 7
+
+for x, delta in events:
+    if prev_x is not None and x > prev_x:
+        if current_coverage >= k:
+            result += (x - prev_x)
+    current_coverage += delta
+    prev_x = x
+
+print(result % MOD)
