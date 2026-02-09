@@ -1,10 +1,22 @@
-a, b = map(int, input().split())
+n = int(input())
+concerts = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    concerts.append((a, b))
 
-def minimal_capacitors(a, b):
-    sum_q = 0
-    while b != 0:
-        sum_q += a // b
-        a, b = b, a % b
-    return sum_q
+# Sort by scheduled date (a_i)
+concerts.sort()
 
-print(minimal_capacitors(a, b))
+prev = 0
+last_day = 0
+for a, b in concerts:
+    current = max(prev, b)
+    # Ensure current does not exceed a_i
+    if current > a:
+        current = a
+    if current < prev:
+        current = prev  # Ensure non-decreasing
+    last_day = current
+    prev = current
+
+print(last_day)
