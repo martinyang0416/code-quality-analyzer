@@ -1,17 +1,15 @@
-n, k = map(int, input().split())
-s = list(map(int, input().split()))
+M = int(input())
+lines = []
+for _ in range(M):
+    d, c = map(int, input().split())
+    lines.append((d, c))
 
-prefix = [0] * (n + 1)
-for i in range(n):
-    prefix[i + 1] = prefix[i] + s[i]
+number_str = ''.join(str(d) * c for d, c in lines)
+rounds = 0
 
-max_avg = 0.0
+while len(number_str) > 1:
+    sum_digits = sum(int(ch) for ch in number_str)
+    rounds += 1
+    number_str = str(sum_digits)
 
-for L in range(k, n + 1):
-    for i in range(n - L + 1):
-        total = prefix[i + L] - prefix[i]
-        avg = total / L
-        if avg > max_avg:
-            max_avg = avg
-
-print("{0:.15f}".format(max_avg))
+print(rounds)
