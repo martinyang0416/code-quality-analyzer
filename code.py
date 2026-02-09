@@ -1,26 +1,25 @@
-import sys
-sys.setrecursionlimit(1 << 25)
+MOD = 10**9 + 7
 
 def main():
     import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    n = int(data[idx])
-    idx += 1
-    m = int(data[idx])
-    idx += 1
-
-    parent = [i for i in range(n + 1)]  # 1-based indexing
-    rank = [1] * (n + 1)
-
-    def find(u):
-        while parent[u] != u:
-            parent[u] = parent[parent[u]]
-            u = parent[u]
-        return u
-
-    def union(u, v):
-        u_root = find(u)
-        v_root = find(v)
-  
+    N, K, P = map(int, sys.stdin.readline().split())
+    B = list(map(int, sys.stdin.readline().split()))
+    
+    if N != 2 * K:
+        print(0)
+        return
+    
+    if P > N:
+        print(0)
+        return
+    
+    from collections import defaultdict
+    count_B = defaultdict(int)
+    for num in B:
+        if num < 1 or num > K:
+            print(0)
+            return
+        count_B[num] += 1
+    
+    for num in count_B:
+        if count_B[num]
