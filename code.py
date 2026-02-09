@@ -1,15 +1,23 @@
 def main():
     import sys
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    for i in range(1, T+1):
-        S = input[i]
-        reversed_S = S[::-1]
-        count = 0
-        for a, b in zip(S, reversed_S):
-            if a != b:
-                count += 1
-        print(count // 2)
-
-if __name__ == "__main__":
-    main()
+    letter = sys.stdin.readline().strip()
+    phrase = sys.stdin.readline().strip()
+    
+    p = len(phrase)
+    n = len(letter)
+    count = 0
+    
+    if p == 0 or n < p:
+        print(0)
+        return
+    
+    for i in range(n - p + 1):
+        valid = True
+        for j in range(p):
+            c = letter[i + j]
+            required = phrase[j]
+            if c != '$' and c != required:
+                valid = False
+                break
+        if valid:
+         
