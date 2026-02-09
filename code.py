@@ -1,21 +1,15 @@
-import sys
-from sys import stdin
+n, x, y = map(int, input().split())
+p = list(map(int, input().split()))
+p.sort()
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    t = int(input[ptr])
-    ptr += 1
-    for _ in range(t):
-        n, m, k = map(int, input[ptr:ptr+3])
-        ptr +=3
-        classes = list(map(int, input[ptr:ptr+n]))
-        ptr +=n
-        present = [False]*(k+1)
-        for c in classes:
-            if 1 <= c <=k:
-                present[c] = True
-        all_present = True
-        for i in range(1, k+1):
-            if not present[i]:
-        
+count = 0
+for pages in p:
+    required_x = (pages + 1) // 2
+    if x >= required_x:
+        x -= required_x
+        count += 1
+    else:
+        if y >= pages:
+            y -= pages
+            count += 1
+print(count)
