@@ -1,20 +1,3 @@
-n = int(input())
-employees = []
-sumT = 0
-for _ in range(n):
-    t, r = map(int, input().split())
-    employees.append((r, t))
-    sumT += t
+Okay, so I have this problem where I need to find the area covered by buildings on a grid. Hmm. So the buildings form a connected region, but there might be empty spaces inside, like courtyards. The goal is to calculate the total area of the buildings. 
 
-employees.sort(reverse=True, key=lambda x: x[0])
-
-current_sum = 0
-max_val = 0
-for r, t in employees:
-    current_sum += t
-    temp = current_sum + r
-    if temp > max_val:
-        max_val = temp
-
-answer = max(max_val, sumT)
-print(answer)
+Wait, wait. So each building is a single cell on the grid. The area is the total number of cells occupied by buildings. But wait, maybe the problem is about the actual outline or the connected region including the empty spaces? Or is it just the
