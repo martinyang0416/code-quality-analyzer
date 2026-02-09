@@ -1,27 +1,22 @@
-MOD = 10**9 + 7
+n = int(input())
+concerts = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    concerts.append((a, b))
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    M = int(input[idx])
-    idx += 1
+# Sort by scheduled date (a_i)
+concerts.sort()
 
-    edges = []
-    for _ in range(M):
-        a = int(input[idx]) - 1  # converting to 0-based index
-        idx += 1
-        b = int(input[idx]) - 1
-        idx += 1
-        c = int(input[idx])
-        idx += 1
-        edges.append((c, a, b))
+prev = 0
+last_day = 0
+for a, b in concerts:
+    current = max(prev, b)
+    # Ensure current does not exceed a_i
+    if current > a:
+        current = a
+    if current < prev:
+        current = prev  # Ensure non-decreasing
+    last_day = current
+    prev = current
 
-    # Sort edges by cost
-    edges.sort()
-
-    # Group edges by cost
-    groups = []
-  
+print(last_day)
