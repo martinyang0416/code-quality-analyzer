@@ -1,26 +1,3 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    n = int(input[ptr])
-    ptr += 1
-    m = int(input[ptr])
-    ptr += 1
+Okay, so I have this problem where I need to find the area covered by buildings on a grid. Hmm. So the buildings form a connected region, but there might be empty spaces inside, like courtyards. The goal is to calculate the total area of the buildings. 
 
-    if m < n - 1:
-        print("Impossible")
-        return
-
-    islands = []
-    for _ in range(n):
-        l = int(input[ptr])
-        ptr += 1
-        r = int(input[ptr])
-        ptr += 1
-        islands.append((l, r))
-
-    s_list = []
-    for i in range(n - 1):
-        l_next = islands[i + 1][0]
-        r_curr = islands[i][1]
-        s = l_ne
+Wait, wait. So each building is a single cell on the grid. The area is the total number of cells occupied by buildings. But wait, maybe the problem is about the actual outline or the connected region including the empty spaces? Or is it just the
