@@ -1,20 +1,23 @@
-from collections import Counter
-
 def main():
-    W = input().strip()
-    m = int(input().strip())
-    cards = input().split()
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    m = int(input[ptr])
+    ptr += 1
+    s = int(input[ptr])
+    ptr += 1
+    size = 1 << m  # 2^m
+    g = list(map(int, input[ptr:ptr+size]))
+    ptr += size
     
-    word_counts = Counter(W)
-    card_counts = Counter(cards)
+    # Function to compute the average with 6 decimal places
+    def compute_avg():
+        total = sum(g)
+        avg = total / size
+        return "{0:.6f}".format(avg)
     
-    possible = True
-    for char, count in word_counts.items():
-        if card_counts[char] < count:
-            possible = False
-            break
+    # Print initial average
+    print(compute_avg())
     
-    print("YES" if possible else "NO")
-
-if __name__ == "__main__":
-    main()
+    for _ in range(s):
+    
