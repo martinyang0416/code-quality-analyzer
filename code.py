@@ -1,19 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    while True:
-        N = int(input[ptr])
-        ptr += 1
-        if N == 0:
-            break
-        files = {}  # key: I, value: (start, end, E)
-        excl_intervals = []
-        free_intervals = [(0, float('inf'))]  # managed as list of (start, end), start <= end
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-        for _ in range(N):
-            cmd = input[ptr]
-            ptr += 1
-            if cmd == 'W':
-                I = int(input[ptr])
-          
+import builtins
+import re
