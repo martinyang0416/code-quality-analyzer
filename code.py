@@ -1,15 +1,24 @@
-n, x, y = map(int, input().split())
-p = list(map(int, input().split()))
-p.sort()
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    m = int(input[0])
+    elements = list(map(int, input[1:]))
+    elements.sort()
 
-count = 0
-for pages in p:
-    required_x = (pages + 1) // 2
-    if x >= required_x:
-        x -= required_x
-        count += 1
+    # Check frequency condition
+    freq = {}
+    for num in elements:
+        if num in freq:
+            freq[num] += 1
+        else:
+            freq[num] = 1
+
+    is_even = (m % 2 == 0)
+    valid = True
+
+    if is_even:
+        for count in freq.values():
+            if count % 2 != 0:
+                valid = False
+                break
     else:
-        if y >= pages:
-            y -= pages
-            count += 1
-print(count)
