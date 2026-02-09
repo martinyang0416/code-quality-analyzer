@@ -1,20 +1,21 @@
-def main():
-    import sys
-    n = int(sys.stdin.readline())
-    p = list(map(int, sys.stdin.readline().split()))
-    visited = [False] * n
-    cycle_count = 0
+import math
 
-    for i in range(n):
-        if not visited[i]:
-            cycle_count += 1
-            current = i
-            while not visited[current]:
-                visited[current] = True
-                next_pos = p[current] - 1
-                current = next_pos
+def find_rectangle(n, m, x, y, A):
+    best_rect = None
+    best_distance_sq = float('inf')
 
-    print(n - cycle_count)
+    def get_divisors(a):
+        divisors = []
+        for d in range(1, int(math.isqrt(a)) + 1):
+            if a % d == 0:
+                divisors.append((d, a // d))
+                if d != a // d:
+                    divisors.append((a // d, d))
+        return divisors
 
-if __name__ == "__main__":
-    main()
+    divisors = get_divisors(A)
+
+    for w, h in divisors:
+        if w > n or h > m:
+            new_w, new_h = h, w
+ 
