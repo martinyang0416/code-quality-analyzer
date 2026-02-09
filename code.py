@@ -1,18 +1,27 @@
-M, N = map(int, input().split())
-diff = [0] * (M + 2)  # 1-based indexing, size M+2
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    n = int(input[idx])
+    idx += 1
+    m = int(input[idx])
+    idx += 1
+    d = int(input[idx])
+    idx += 1
+    D = d - n
+    if D < 0:
+        print(0)
+        return
 
-for _ in range(N):
-    A, B, C = map(int, input().split())
-    diff[A] += C
-    if B + 1 <= M:
-        diff[B + 1] -= C
-
-max_height = 0
-current = 0
-
-for i in range(1, M + 1):
-    current += diff[i]
-    if current > max_height:
-        max_height = current
-
-print(max_height)
+    planets = []
+    for _ in range(n):
+        ki = int(input[idx])
+        idx += 1
+        ci = int(input[idx])
+        idx += 1
+        planets.append((ki, ci))
+    
+    def f(x):
+        total = 0
+        for ki, ci in planets:
+            denomin
