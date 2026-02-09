@@ -1,19 +1,19 @@
-MOD = 10**9 + 7
+import sys
+from collections import defaultdict
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    n = int(data[0])
-    k = int(data[1])
+def precompute_spf(max_num):
+    spf = list(range(max_num + 1))  # Initialize each number as its own spf
+    for i in range(2, int(max_num**0.5) + 1):
+        if spf[i] == i:  # i is a prime
+            for j in range(i * i, max_num + 1, i):
+                if spf[j] == j:
+                    spf[j] = i
+    return spf
+
+max_a = 200000
+spf = precompute_spf(max_a)
+
+t = int(sys.stdin.readline())
+for _ in range(t):
+    n = int(sys.stdin.readline())
     
-    # Precompute factorials and inverse factorials up to 3999
-    max_fact = 3999
-    fact = [1] * (max_fact + 1)
-    for i in range(1, max_fact + 1):
-        fact[i] = fact[i-1] * i % MOD
-    
-    inv_fact = [1] * (max_fact + 1)
-    inv_fact[max_fact] = pow(fact[max_fact], MOD - 2, MOD)
-    for i in range(max_fact - 1, -1, -1):
-        inv_fact[i] = in
