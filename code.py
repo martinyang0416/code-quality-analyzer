@@ -1,20 +1,27 @@
-import sys
-sys.setrecursionlimit(1 << 25)
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    M = int(input[idx])
+    idx += 1
 
-class UnionFind:
-    def __init__(self, size):
-        self.parent = list(range(size))
-        self.rank = [1] * size
+    D = []
+    for _ in range(N):
+        D.append(int(input[idx]))
+        idx += 1
 
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
+    W = []
+    for _ in range(M):
+        W.append(int(input[idx]))
+        idx += 1
 
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-        if x_root == y_root:
-            return
-        if self.rank[x_root] < self.rank[y_root]:
-            
+    INF = float('inf')
+    dp = [ [INF] * (M + 1) for _ in range(N + 1) ]
+    dp[0][0] = 0
+
+    for i in range(1, N + 1):
+        d = D[i - 1]
+        current_min = INF
+        
