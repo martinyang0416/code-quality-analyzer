@@ -1,21 +1,16 @@
-import sys
-
 def main():
-    n = int(sys.stdin.readline())
-    S = (1200000) ** 2  # 1.2e6 squared is 1440000000000
-
-    x, y = 0, 0
-    result = []
-
-    for _ in range(n):
-        a, b = map(int, sys.stdin.readline().split())
-        tentative_x = x + a
-        tentative_y = y + b
-        dist_sq = tentative_x ** 2 + tentative_y ** 2
-        if dist_sq <= S:
-            x, y = tentative_x, tentative_y
-            result.append('1')
-        else:
-            result.append('0')
-    
-    print(' '.
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        idx +=1
+        friends = list(map(int, input[idx:idx+N]))
+        idx +=N
+        total = sum(friends) - N + 1
+        print(total)
+        
+if __name__ == "__main__":
+    main()
