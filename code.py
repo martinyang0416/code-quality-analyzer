@@ -1,26 +1,14 @@
-import bisect
+def find_largest_number(Y):
+    if Y % 2 != 0:
+        return -1
+    for s in range(Y, -1, -2):
+        o = Y - s
+        if o >= 0 and o % 4 == 0:
+            return '7' * s + '1' * o
+    return -1
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    M = int(data[idx])
-    idx += 1
-    D = int(data[idx])
-    idx += 1
-    
-    sites = []
-    for _ in range(M):
-        r = int(data[idx])
-        p = int(data[idx + 1])
-        sites.append((r, p))
-        idx += 2
-    
-    # Sort the sites based on position
-    sites.sort(key=lambda x: x[1])
-    
-    p_list = [p for (r, p) in sites]
-    r_list = [r for (r, p) in sites]
-    
-    # Comp
+T = int(input())
+for _ in range(T):
+    Y = int(input())
+    result = find_largest_number(Y)
+    print(result if result != -1 else -1)
