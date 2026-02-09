@@ -1,19 +1,23 @@
-import itertools
-
 def main():
-    n = int(input())
-    phrases = [input().strip() for _ in range(n)]
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    m = int(input[ptr])
+    ptr += 1
+    s = int(input[ptr])
+    ptr += 1
+    size = 1 << m  # 2^m
+    g = list(map(int, input[ptr:ptr+size]))
+    ptr += size
     
-    vowels = 'aeiou'
-    max_length = 0
+    # Function to compute the average with 6 decimal places
+    def compute_avg():
+        total = sum(g)
+        avg = total / size
+        return "{0:.6f}".format(avg)
     
-    # Generate all possible subsets of 1 or 2 vowels
-    for r in range(1, 3):
-        for subset in itertools.combinations(vowels, r):
-            allowed = set(subset)
-            total = 0
-            for phrase in phrases:
-                phrase_vowels = set()
-                for c in phrase:
-                    if c in vowels:
-               
+    # Print initial average
+    print(compute_avg())
+    
+    for _ in range(s):
+    
