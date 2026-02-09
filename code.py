@@ -1,19 +1,23 @@
-from collections import defaultdict
+def solve():
+    import sys
+    from collections import defaultdict
 
-def count_balanced_substrings(s):
-    balance = 0
-    prefix_counts = defaultdict(int)
-    prefix_counts[0] = 1  # To handle the empty prefix
-    result = 0
+    t = sys.stdin.readline().strip()
+    k = int(sys.stdin.readline())
 
-    for char in s:
-        if char == 'a':
-            balance += 1
-        else:
-            balance -= 1
+    n = len(t)
+    cnt = defaultdict(int)
+    for c in t:
+        cnt[c] += 1
 
-        # Add the number of times this balance was seen before to the result
-        result += prefix_counts.get(balance, 0)
+    divisors = set()
+    for d in range(1, int(k**0.5) + 1):
+        if k % d == 0:
+            if d <= n:
+                divisors.add(d)
+            if (k // d) <= n:
+                divisors.add(k // d)
+    divisors = sorted(divisors)
 
-        # Update the count for the current balance
-        prefix_count
+    required = defaultdict(list)
+    for 
