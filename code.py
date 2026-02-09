@@ -1,22 +1,20 @@
-import sys
-from collections import defaultdict
-
 def main():
-    n = int(sys.stdin.readline())
-    h_list = []
-    a_list = []
-    for _ in range(n):
-        h, a = map(int, sys.stdin.readline().split())
-        h_list.append(h)
-        a_list.append(a)
-    
-    h_count = defaultdict(int)
-    for h in h_list:
-        h_count[h] += 1
-    
-    for i in range(n):
-        a_i = a_list[i]
-        x = h_count.get(a_i, 0)
-        home = (n - 1) + x
-        away = (n - 1) - x
-        print(f"{home} {away
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N = int(input[ptr])
+        ptr += 1
+        ranges = []
+        for _ in range(N):
+            S = int(input[ptr])
+            E = int(input[ptr + 1])
+            ranges.append((S, E))
+            ptr += 2
+        scores = [0] * N
+        for i in range(N):
+            for j in range(i + 1, N):
+                s_i, e_i = ranges[i]
+                s_j, e
