@@ -1,23 +1,17 @@
-from collections import Counter
+n = int(input())
+L = list(map(int, input().split()))
+path = [0] + L + [0]
 
-def main():
-    s = input().strip()
-    k = int(input())
-    
-    if not s:
-        print(0)
-        print()
-        return
-    
-    freq = Counter(s)
-    distinct = len(freq)
-    
-    if distinct <= k:
-        print(len(s))
-        print(s)
-        return
-    else:
-        # Sort by frequency descending, then take top k
-        letters = sorted(freq.items(), key=lambda x: (-x[1], x[0]))[:k]
-        selected_chars = {char for char, count in letters}
-        total
+original = 0
+for i in range(1, len(path)):
+    original += abs(path[i] - path[i-1])
+
+for i in range(1, n+1):
+    pre = path[i-1]
+    curr = path[i]
+    next_val = path[i+1]
+    a = abs(curr - pre)
+    b = abs(next_val - curr)
+    c = abs(next_val - pre)
+    new_dist = original - a - b + c
+    print(new_dist)
