@@ -1,23 +1,19 @@
-n, k = map(int, input().split())
-events = []
-for _ in range(n):
-    l, r = map(int, input().split())
-    events.append((l, 1))
-    events.append((r + 1, -1))
+def main():
+    import sys
+    M = int(sys.stdin.readline())
+    B = list(map(int, sys.stdin.readline().split()))
+    if M < 4:
+        print(0)
+        return
 
-events.sort()
-
-result = 0
-current_coverage = 0
-prev_x = None
-
-MOD = 10**9 + 7
-
-for x, delta in events:
-    if prev_x is not None and x > prev_x:
-        if current_coverage >= k:
-            result += (x - prev_x)
-    current_coverage += delta
-    prev_x = x
-
-print(result % MOD)
+    INF = float('inf')
+    prev_dp = [INF] * 4  # [gap0, gap1, gap2, gap3]
+    # Initialize first element (index 0)
+    prev_dp[0] = B[0]       # selected
+    prev_dp[1] = 0          # not selected
+    
+    for i in range(1, M):
+        current_dp = [INF] * 4
+        current_val = B[i]
+        for gap_prev in range(4):
+            if pre
