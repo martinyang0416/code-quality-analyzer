@@ -1,23 +1,20 @@
-import heapq
+import sys
+from collections import deque
 
-class Edge:
-    def __init__(self, to, rev, capacity, cost):
-        self.to = to
-        self.rev = rev
-        self.capacity = capacity
-        self.cost = cost
-
-def add_edge(adj, fr, to, capacity, cost):
-    adj[fr].append(Edge(to, len(adj[to]), capacity, cost))
-    adj[to].append(Edge(fr, len(adj[fr])-1, 0, -cost))
-
-def min_cost_flow(adj, s, t, maxf):
-    n = len(adj)
-    res = 0.0
-    h = [0.0] * n
-    prevv = [0] * n
-    preve = [0] * n
-    INF = float('inf')
-
-    flow = 0
-  
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n + 1))
+        self.size = [1] * (n + 1)
+        self.diameter = [0] * (n + 1)
+    
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+    
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        if self.size[x
