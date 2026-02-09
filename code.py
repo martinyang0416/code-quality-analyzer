@@ -1,23 +1,19 @@
-from collections import deque
+import sys
+from collections import defaultdict
 
-m, k = map(int, input().split())
-t = input().strip()
-
-visited = [False] * (m + 1)
-queue = deque()
-queue.append((1, 0))
-visited[1] = True
-
-while queue:
-    pos, steps = queue.popleft()
-    if pos == m:
-        print(steps)
-        exit()
-    for step in range(1, k + 1):
-        next_pos = pos + step
-        if next_pos > m:
-            continue
-        if next_pos == m:
-            print(steps + 1)
-            exit()
-        if t[next_pos - 1] == '1' and not visited
+def main():
+    n = int(sys.stdin.readline())
+    vendors = list(map(int, sys.stdin.readline().split()))
+    m = int(sys.stdin.readline())
+    f1 = list(map(int, sys.stdin.readline().split()))
+    f2 = list(map(int, sys.stdin.readline().split()))
+    
+    first_counts = defaultdict(int)
+    second_total = defaultdict(int)
+    
+    for j in range(m):
+        a = f1[j]
+        b = f2[j]
+        first_counts[a] += 1
+        if a != b:
+            seco
