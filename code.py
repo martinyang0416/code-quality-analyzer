@@ -1,22 +1,21 @@
-import math
-import heapq
+import sys
+from sys import stdin
 
-def generate_edges(star):
-    x, y, a_deg, r = star
-    tips = []
-    for k in range(5):
-        angle_deg = a_deg + 72 * k
-        angle_rad = math.radians(angle_deg)
-        tip_x = x + r * math.sin(angle_rad)
-        tip_y = y + r * math.cos(angle_rad)
-        tips.append((tip_x, tip_y))
-    edges = [
-        (tips[0], tips[2]),
-        (tips[2], tips[4]),
-        (tips[4], tips[1]),
-        (tips[1], tips[3]),
-        (tips[3], tips[0])
-    ]
-    return edges
-
-def c
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    t = int(input[ptr])
+    ptr += 1
+    for _ in range(t):
+        n, m, k = map(int, input[ptr:ptr+3])
+        ptr +=3
+        classes = list(map(int, input[ptr:ptr+n]))
+        ptr +=n
+        present = [False]*(k+1)
+        for c in classes:
+            if 1 <= c <=k:
+                present[c] = True
+        all_present = True
+        for i in range(1, k+1):
+            if not present[i]:
+        
