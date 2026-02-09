@@ -1,10 +1,25 @@
-n, m = map(int, input().split())
-t = [int(input()) for _ in range(n)]
+def count_divisors(x):
+    if x == 1:
+        return 1
+    count = 1
+    i = 2
+    while i * i <= x:
+        exponent = 0
+        while x % i == 0:
+            exponent += 1
+            x = x // i
+        if exponent > 0:
+            count *= (exponent + 1)
+        i += 1
+    if x > 1:
+        count *= 2
+    return count
 
-for k in range(1, m + 1):
-    for i in range(n - 1):
-        if t[i] % k > t[i+1] % k:
-            t[i], t[i+1] = t[i+1], t[i]
+n = int(input())
+lst = list(map(int, input().split()))
+counts = [count_divisors(x) for x in lst]
 
-for number in t:
-    print(number)
+from collections import defaultdict
+freq = defaultdict(int)
+for c in counts:
+ 
