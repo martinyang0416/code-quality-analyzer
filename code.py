@@ -1,12 +1,24 @@
-MOD = 998244353
-
-n = int(input())
-# The array is read but not used since the sum is n*(n+1)/2 regardless of the fixed values
-input().split()
-
-n_mod = n % MOD
-sum_n = (n_mod * (n + 1)) % MOD
-inv_two = pow(2, MOD-2, MOD)
-result = (sum_n * inv_two) % MOD
-
-print(result)
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    q = int(data[1])
+    a = list(map(int, data[2:n + 2]))
+    diff = [0] * (n + 2)
+    
+    index = n + 2
+    for i in range(q):
+        l = int(data[index])
+        r = int(data[index + 1])
+        index += 2
+        diff[l] += 1
+        if r + 1 <= n:
+            diff[r + 1] -= 1
+    
+    weights = []
+    current = 0
+    for i in range(1, n + 1):
+        current += diff[i]
+        weight
