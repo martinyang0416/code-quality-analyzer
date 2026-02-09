@@ -1,22 +1,15 @@
-from collections import deque
-
-def longest_temperature_span():
+def main():
     import sys
-    n = int(sys.stdin.readline())
-    temps = list(map(int, sys.stdin.readline().split()))
-    if n == 0:
-        print(0)
-        return
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    for i in range(1, T+1):
+        S = input[i]
+        reversed_S = S[::-1]
+        count = 0
+        for a, b in zip(S, reversed_S):
+            if a != b:
+                count += 1
+        print(count // 2)
 
-    max_deque = deque()
-    min_deque = deque()
-    left = 0
-    max_len = 0
-
-    for right in range(n):
-        current_temp = temps[right]
-
-        # Update max_deque
-        while max_deque and temps[max_deque[-1]] <= current_temp:
-            max_deque.pop()
-        max_deque.ap
+if __name__ == "__main__":
+    main()
