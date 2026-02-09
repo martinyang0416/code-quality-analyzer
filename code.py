@@ -1,14 +1,13 @@
-m = int(input())
-chapters = []
-for _ in range(m):
-    start, end = map(int, input().split())
-    chapters.append(end)
-p = int(input())
+n = int(input())
+a = list(map(int, input().split()))
+min_shots = float('inf')
 
-count = 0
-for end in chapters:
-    if end <= p:
-        count += 1
-    else:
-        break
-print(count)
+for i in range(n - 2):
+    left = a[i]
+    mid = a[i + 1]
+    right = a[i + 2]
+    required = max(left, right, (mid + 2) // 3)
+    if required < min_shots:
+        min_shots = required
+
+print(min_shots)
