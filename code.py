@@ -1,24 +1,15 @@
-import sys
-import math
+n = int(input())
+collection = set()
 
-def extended_gcd(a, b):
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = extended_gcd(b % a, a)
-        return (g, x - (b // a) * y, y)
-
-def crt(a1, m1, a2, m2):
-    g, x, y = extended_gcd(m1, m2)
-    if (a1 - a2) % g != 0:
-        return None
-    lcm = m1 // g * m2
-    x0 = (a1 + (x * (a2 - a1) // g) % (m2 // g) * m1) % lcm
-    return x0
-
-def compute_same_days(d, r1, r2, n, m):
-    same = 0
-    for x in range(d):
-        a = x % n
-        b = x % m
-   
+for _ in range(n):
+    op = input().split()
+    if op[0] == '+':
+        v = int(op[1])
+        collection.add(v)
+    elif op[0] == '-':
+        v = int(op[1])
+        collection.discard(v)
+    elif op[0] == '?':
+        p = op[1]
+        x = int(p, 2)
+        print(1 if x in collection else 0)
