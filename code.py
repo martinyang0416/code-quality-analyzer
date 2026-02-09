@@ -1,24 +1,17 @@
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    n = int(data[idx])
-    m = int(data[idx + 1])
-    idx += 2
-    for _ in range(m):
-        ai = int(data[idx])
-        bi = int(data[idx + 1])
-        ci = int(data[idx + 2])
-        idx += 3
-        if ai == 1:
-            print(0)
-        elif bi == n:
-            print(0)
-        else:
-            if ai < bi:
-                print(0)
-            else:
-                print(1)
+n, k = map(int, input().split())
+s = list(map(int, input().split()))
 
-if __name__ == '__mai
+prefix = [0] * (n + 1)
+for i in range(n):
+    prefix[i + 1] = prefix[i] + s[i]
+
+max_avg = 0.0
+
+for L in range(k, n + 1):
+    for i in range(n - L + 1):
+        total = prefix[i + L] - prefix[i]
+        avg = total / L
+        if avg > max_avg:
+            max_avg = avg
+
+print("{0:.15f}".format(max_avg))
