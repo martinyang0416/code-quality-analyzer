@@ -1,16 +1,23 @@
-n, m = map(int, input().split())
-t = min(n, m)
-# Initialize grid with 1-based indices
-grid = [[0] * (m + 1) for _ in range(n + 1)]
-for i in range(1, n + 1):
-    row = list(map(int, input().split()))
-    for j in range(1, m + 1):
-        grid[i][j] = row[j - 1]
+from collections import Counter
 
-# Initialize prefix sum array
-prefix = [[0] * (m + 1) for _ in range(n + 1)]
-
-for i in range(1, n + 1):
-    for j in range(1, m + 1):
-        distance = (i + j - 2) * grid[i][j]
-        prefix[i][j] = distance + prefix[i-1][j] + prefix[i]
+def main():
+    s = input().strip()
+    k = int(input())
+    
+    if not s:
+        print(0)
+        print()
+        return
+    
+    freq = Counter(s)
+    distinct = len(freq)
+    
+    if distinct <= k:
+        print(len(s))
+        print(s)
+        return
+    else:
+        # Sort by frequency descending, then take top k
+        letters = sorted(freq.items(), key=lambda x: (-x[1], x[0]))[:k]
+        selected_chars = {char for char, count in letters}
+        total
