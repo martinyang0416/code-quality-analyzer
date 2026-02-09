@@ -1,18 +1,23 @@
-import sys
-
 def main():
-    m = int(sys.stdin.readline())
-    b = list(map(int, sys.stdin.readline().split()))
-    p = int(sys.stdin.readline())
-    
-    bonuses = dict()  # key: (r, v), value: max c
-    
-    for _ in range(p):
-        rj, cj, vj = map(int, sys.stdin.readline().split())
-        rj -= 1  # zero-based index for resources
-        if vj == 0:
-            if (rj, cj) in bonuses:
-                del bonuses[(rj, cj)]
-        else:
-            key = (rj, vj)
-            if key in bonus
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    while True:
+        n = int(input[ptr])
+        m = int(input[ptr+1])
+        ptr += 2
+        if n == 0 and m == 0:
+            break
+        vectors = []
+        for _ in range(n):
+            s = input[ptr]
+            ptr += 1
+            num = int(s, 2)
+            vectors.append(num)
+        # Compute S
+        S = 0
+        for num in vectors:
+            S ^= num
+        if S == 0:
+            print(n)
+      
