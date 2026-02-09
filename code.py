@@ -1,25 +1,26 @@
-def count_factors(n, factor):
-    count = 0
-    if n == 0:
-        return 0
-    while n % factor == 0:
-        count += 1
-        n = n // factor
-    return count
+import bisect
 
 def main():
     import sys
-    input = sys.stdin.read().split()
-    t = int(input[0])
-    idx = 1
-    for _ in range(t):
-        x = int(input[idx])
-        y = int(input[idx + 1])
+    input = sys.stdin.read
+    data = input().split()
+    
+    idx = 0
+    n = int(data[idx])
+    k = int(data[idx + 1])
+    idx += 2
+    
+    e = list(map(int, data[idx:idx + n]))
+    idx += n
+    
+    conflicts = [[] for _ in range(n)]
+    for _ in range(k):
+        x = int(data[idx]) - 1
+        y = int(data[idx + 1]) - 1
         idx += 2
-        
-        if x == 0 or y == 0:
-            print(0, 0)
-            continue
-        
-        a = count_factors(x, 2)
-        b = co
+        conflicts[x].append(y)
+        conflicts[y].append(x)
+    
+    sorted_e = sorted(e)
+    result = [0] * n
+ 
