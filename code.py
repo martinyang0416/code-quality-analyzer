@@ -1,25 +1,21 @@
-def count_factors(n, factor):
-    count = 0
-    if n == 0:
-        return 0
-    while n % factor == 0:
-        count += 1
-        n = n // factor
-    return count
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    t = int(input[0])
-    idx = 1
-    for _ in range(t):
-        x = int(input[idx])
-        y = int(input[idx + 1])
-        idx += 2
-        
-        if x == 0 or y == 0:
-            print(0, 0)
-            continue
-        
-        a = count_factors(x, 2)
-        b = co
+    n = int(sys.stdin.readline())
+    S = (1200000) ** 2  # 1.2e6 squared is 1440000000000
+
+    x, y = 0, 0
+    result = []
+
+    for _ in range(n):
+        a, b = map(int, sys.stdin.readline().split())
+        tentative_x = x + a
+        tentative_y = y + b
+        dist_sq = tentative_x ** 2 + tentative_y ** 2
+        if dist_sq <= S:
+            x, y = tentative_x, tentative_y
+            result.append('1')
+        else:
+            result.append('0')
+    
+    print(' '.
