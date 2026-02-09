@@ -1,27 +1,26 @@
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx])
-    idx += 1
-    m = int(input[idx])
-    idx += 1
-    d = int(input[idx])
-    idx += 1
-    D = d - n
-    if D < 0:
-        print(0)
-        return
-
-    planets = []
-    for _ in range(n):
-        ki = int(input[idx])
-        idx += 1
-        ci = int(input[idx])
-        idx += 1
-        planets.append((ki, ci))
+    m, *rest = list(map(int, sys.stdin.read().split()))
+    p = rest[:m]
+    min_p = min(p)
+    max_p = max(p)
     
-    def f(x):
-        total = 0
-        for ki, ci in planets:
-            denomin
+    if min_p == max_p:
+        print("POSSIBLE")
+        return
+    
+    if (max_p - min_p) % 2 != 0:
+        print("IMPOSSIBLE")
+        return
+    
+    y = (max_p - min_p) // 2
+    x = (max_p + min_p) // 2
+    
+    for pi in p:
+        if pi != x + y and pi != x - y:
+            print("IMPOSSIBLE")
+            return
+    
+    print("POSSIBLE")
+
+if __nam
