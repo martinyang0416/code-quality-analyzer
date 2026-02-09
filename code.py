@@ -1,22 +1,18 @@
-import heapq
+n = int(input())
+m = 2 * n - 2
+total = 0
 
-def main():
-    w, h, limit = map(int, input().split())
-    grid = []
-    for _ in range(h):
-        row = input().strip().split()
-        grid.append(row)
+for i in range(m - n + 1):
+    # Calculate the number of edges
+    edges = 0
+    if i > 0:
+        edges += 1
+    if i + n < m:
+        edges += 1
     
-    # Find the start and end positions
-    start = None
-    end = None
-    for j in range(w):
-        if grid[0][j] == 'S':
-            start = (0, j)
-    for j in range(w):
-        if grid[-1][j] == 'T':
-            end = (h-1, j)
-    
-    # Create the cost grid
-    cost = [[0 for _ in range(w)] for _ in range(h)]
-    for 
+    # Calculate the number of remaining lamps
+    remaining = m - n - edges
+    ways = 4 * (3 ** edges) * (4 ** remaining)
+    total += ways
+
+print(total)
