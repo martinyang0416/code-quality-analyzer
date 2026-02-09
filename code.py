@@ -1,19 +1,21 @@
-import sys
+import math
+
+def readint():
+    return list(map(int, input().split()))
 
 def main():
-    n = int(sys.stdin.readline())
-    c = list(map(int, sys.stdin.readline().split()))
-    s = list(map(int, sys.stdin.readline().split()))
+    M, P = map(int, input().split())
+    zones = []
+    for _ in range(M):
+        x, y, z, r, e = map(int, input().split())
+        zones.append((x, y, z, r, e))
     
-    max_sum = 0
-    
-    for i in range(n):
-        a = c[i]
-        sa = s[i]
-        for j in range(i + 1, n):
-            b = c[j]
-            sb = s[j]
-            # Check if neither a is subset of b nor b is subset of a
-            intersect = a & b
-            if (intersect == a) or (intersect == b):
-                continu
+    for _ in range(P):
+        sx, sy, sz, dx, dy, dz = map(int, input().split())
+        A = (sx, sy, sz)
+        B = (dx, dy, dz)
+        total_e = 0
+        
+        for (cx, cy, cz, r, e) in zones:
+            # Compute dA_sq and dB_sq
+        
