@@ -1,21 +1,24 @@
-n = int(input())
-stores_masks = []
-for _ in range(n):
-    bits = list(map(int, input().split()))
-    mask = 0
-    for i in range(10):
-        if bits[i] == 1:
-            mask += (1 << i)
-    stores_masks.append(mask)
+n, m = map(int, input().split())
+grid = [list(input().strip()) for _ in range(n)]
 
-profits = []
-for _ in range(n):
-    profits.append(list(map(int, input().split())))
+min_row = n
+max_row = -1
+min_col = m
+max_col = -1
+has_sample = False
 
-max_total = -float('inf')
-for j_mask in range(1, 1 << 10):
-    total = 0
-    for i in range(n):
-        store_mask = stores_masks[i]
-        overlap = bin(j_mask & store_mask).count('1')
-        t
+for i in range(n):
+    for j in range(m):
+        if grid[i][j] == 's':
+            has_sample = True
+            min_row = min(min_row, i)
+            max_row = max(max_row, i)
+            min_col = min(min_col, j)
+            max_col = max(max_col, j)
+
+if not has_sample:
+    for row in grid:
+        print(''.join(row))
+    exit()
+
+# Now, mark 
