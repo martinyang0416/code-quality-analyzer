@@ -1,23 +1,23 @@
 import sys
-from collections import deque
+from collections import defaultdict
 
 def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    t = int(input[ptr])
-    ptr += 1
-    for _ in range(t):
-        rows = int(input[ptr])
-        cols = int(input[ptr+1])
-        start_r = int(input[ptr+2])
-        start_c = int(input[ptr+3])
-        ptr +=4
-        
-        k = int(input[ptr])
-        ptr +=1
-        
-        closed = set()
-        for __ in range(k):
-            r = int(input[ptr])
-            c = int(input[ptr+1])
-      
+    m = int(sys.stdin.readline())
+    edges = []
+    outgoing = defaultdict(list)
+
+    for idx in range(m):
+        u, v = map(int, sys.stdin.readline().split())
+        edges.append((u, v))
+        outgoing[u].append(idx)
+    
+    max_degree = 0
+    for u in outgoing:
+        current = len(outgoing[u])
+        if current > max_degree:
+            max_degree = current
+    
+    k = max_degree
+    colors = [0] * m
+
+    for u in outgoing:
