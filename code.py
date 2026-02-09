@@ -1,22 +1,21 @@
 import sys
-import math
 
 def main():
-    m, b = map(int, sys.stdin.readline().split())
-    weights = list(map(int, sys.stdin.readline().split()))
+    n = int(sys.stdin.readline())
+    S = (1200000) ** 2  # 1.2e6 squared is 1440000000000
+
+    x, y = 0, 0
+    result = []
+
+    for _ in range(n):
+        a, b = map(int, sys.stdin.readline().split())
+        tentative_x = x + a
+        tentative_y = y + b
+        dist_sq = tentative_x ** 2 + tentative_y ** 2
+        if dist_sq <= S:
+            x, y = tentative_x, tentative_y
+            result.append('1')
+        else:
+            result.append('0')
     
-    if m == 0:
-        print(0)
-        print()
-        return
-    
-    # Compute the residues modulo b
-    residues = [w % b for w in weights]
-    
-    # Compute GCD of all residues
-    current_gcd = residues[0]
-    for r in residues[1:]:
-        current_gcd = math.gcd(current_gcd, r)
-    
-    # Compute GCD with b
-    final_gcd = math.gcd(current_
+    print(' '.
