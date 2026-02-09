@@ -1,23 +1,22 @@
 def main():
     import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    m = int(input[ptr])
-    ptr += 1
-    s = int(input[ptr])
-    ptr += 1
-    size = 1 << m  # 2^m
-    g = list(map(int, input[ptr:ptr+size]))
-    ptr += size
+    input = sys.stdin.read
+    data = input().split()
+    N = int(data[0])
+    Y = int(data[1])
+    G = list(map(int, data[2:2+N]))
     
-    # Function to compute the average with 6 decimal places
-    def compute_avg():
-        total = sum(g)
-        avg = total / size
-        return "{0:.6f}".format(avg)
+    # Transform the array
+    A = [g - Y for g in G]
     
-    # Print initial average
-    print(compute_avg())
+    # Compute prefix sums
+    prefix = [0] * (N + 1)
+    for i in range(1, N + 1):
+        prefix[i] = prefix[i - 1] + A[i - 1]
     
-    for _ in range(s):
+    # Collect all prefix sums and sort them
+    prefix_sums = prefix.copy()
+    sorted_prefix = sorted(prefix_sums)
     
+    # Assign ranks
+    r
