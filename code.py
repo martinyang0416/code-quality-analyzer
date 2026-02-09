@@ -1,19 +1,20 @@
 import sys
+sys.setrecursionlimit(1 << 25)
 
-def main():
-    n = int(sys.stdin.readline())
-    c = list(map(int, sys.stdin.readline().split()))
-    s = list(map(int, sys.stdin.readline().split()))
-    
-    max_sum = 0
-    
-    for i in range(n):
-        a = c[i]
-        sa = s[i]
-        for j in range(i + 1, n):
-            b = c[j]
-            sb = s[j]
-            # Check if neither a is subset of b nor b is subset of a
-            intersect = a & b
-            if (intersect == a) or (intersect == b):
-                continu
+class UnionFind:
+    def __init__(self, size):
+        self.parent = list(range(size))
+        self.rank = [1] * size
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        if self.rank[x_root] < self.rank[y_root]:
+            
