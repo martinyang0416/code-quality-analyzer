@@ -1,25 +1,12 @@
-import sys
-from collections import deque
-
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-
-    m = int(input[ptr])
-    ptr += 1
-
-    if m == 1:
-        # Only root node, but m >=2 per problem statement
-        pass
-    else:
-        p = list(map(int, input[ptr:ptr + (m - 1)]))
-        ptr += (m - 1)
-
-    # Build adjacency list
-    adj = [[] for _ in range(m + 1)]
-    for i in range(2, m + 1):
-        parent = p[i - 2]
-        adj[i].append(parent)
-        adj[parent].append(i)
-
-    
+s = input().strip()
+if not s:
+    print(s)
+else:
+    s_list = list(s)
+    for i in range(1, len(s_list)):
+        c = s_list[i]
+        if c == 'z':
+            s_list[i] = 'a'
+        else:
+            s_list[i] = chr(ord(c) + 1)
+    print(''.join(s_list))
