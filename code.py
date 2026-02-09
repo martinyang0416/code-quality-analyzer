@@ -1,22 +1,22 @@
+import sys
+
+def count_a_in_hex_range(x, y):
+    start = min(x, y)
+    end = max(x, y)
+    total = 0
+    for n in range(start, end + 1):
+        hex_str = hex(n)[2:]  # Get the hex without '0x'
+        # Convert to uppercase to count 'A's
+        total += hex_str.upper().count('A')
+    return total
+
 def main():
     import sys
-    input = sys.stdin.read
-    data = input().split()
-    N = int(data[0])
-    Y = int(data[1])
-    G = list(map(int, data[2:2+N]))
-    
-    # Transform the array
-    A = [g - Y for g in G]
-    
-    # Compute prefix sums
-    prefix = [0] * (N + 1)
-    for i in range(1, N + 1):
-        prefix[i] = prefix[i - 1] + A[i - 1]
-    
-    # Collect all prefix sums and sort them
-    prefix_sums = prefix.copy()
-    sorted_prefix = sorted(prefix_sums)
-    
-    # Assign ranks
-    r
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    for _ in range(N):
+        x = int(input[idx])
+        y = int(input[idx+1])
+      
