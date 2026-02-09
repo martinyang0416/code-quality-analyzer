@@ -1,16 +1,21 @@
-n, m = map(int, input().split())
-degrees = [0] * (n + 1)
-for _ in range(m):
-    u, v = map(int, input().split())
-    degrees[u] += 1
-    degrees[v] += 1
+from collections import deque
 
-min_modifications = float('inf')
+def read_grid():
+    grid = []
+    for _ in range(3):
+        row = list(map(str, input().split()))
+        grid.extend(row)
+    return ''.join(grid)
 
-for h in range(1, n + 1):
-    c = degrees[h]
-    mod = (n - 1) + m - 2 * c
-    if mod < min_modifications:
-        min_modifications = mod
-
-print(min_modifications)
+def main():
+    target = "123456780"
+    while True:
+        line = input()
+        if line == '-1':
+            break
+        # Read the next two lines
+        grid_part = [line.strip()]
+        grid_part.append(input().strip())
+        grid_part.append(input().strip())
+        # Process each test case
+        initi
