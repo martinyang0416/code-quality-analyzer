@@ -1,20 +1,26 @@
+import heapq
+
 def main():
     import sys
     input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx]); idx +=1
-    m = int(input[idx]); idx +=1
-    k = int(input[idx]); idx +=1
-
-    vertical_cuts = set()
-    horizontal_cuts = set()
-
-    for _ in range(k):
-        x1 = int(input[idx]); y1 = int(input[idx+1]); x2 = int(input[idx+2]); y2 = int(input[idx+3])
-        idx +=4
-        if x1 == x2:
-            vertical_cuts.add(x1)
-        else:
-            horizontal_cuts.add(y1)
-
-    def compute_interva
+    ptr = 0
+    W = int(input[ptr])
+    H = int(input[ptr+1])
+    ptr += 2
+    maze = []
+    for _ in range(H):
+        row = input[ptr]
+        ptr += 1
+        maze.append(row)
+    
+    score_table = []
+    for _ in range(10):
+        row = list(map(int, input[ptr:ptr+10]))
+        ptr += 10
+        score_table.append(row)
+    
+    start = None
+    end = None
+    items = {}
+    for y in range(H):
+        for x in ran
