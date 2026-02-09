@@ -1,23 +1,19 @@
-import sys
-
-def main():
-    while True:
-        line = sys.stdin.readline()
-        if not line:
-            break
-        a, b = map(int, line.strip().split())
-        if a == 0 and b == 0:
-            break
-        
-        groupA = []
-        for _ in range(a):
-            x = int(sys.stdin.readline())
-            groupA.append(x)
-        
-        groupB = []
-        for _ in range(b):
-            y = int(sys.stdin.readline())
-            groupB.append(y)
-        
-        sumA = sum(groupA)
- 
+def determine_holder():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        ID = int(input[idx + 1])
+        idx += 2
+        current = ID
+        last_passer = None
+        for _ in range(N):
+            cmd = input[idx]
+            if cmd == 'P':
+                # Process P command
+                new_id = int(input[idx + 1])
+                idx += 2
+                last_passer = current
