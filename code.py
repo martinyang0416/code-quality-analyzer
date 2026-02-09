@@ -1,20 +1,30 @@
-import sys
-from collections import deque
+import bisect
 
-def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        n, C = int(input[idx]), int(input[idx+1])
-        idx +=2
-        edges = [[] for _ in range(n+1)]
-        degree = [0]*(n+1)
-        for _ in range(n-1):
-            v = int(input[idx])
-            u = int(input[idx+1])
-            c = int(input[idx+2])
-            idx +=3
-            edges[v].append(u)
-            edges[u].ap
+n = int(input())
+arr = list(map(int, input().split()))
+
+tails = []
+prev_map = {}
+
+for num in arr:
+    j = bisect.bisect_left(tails, num)
+    if j == 0:
+        prev = None
+    else:
+        prev = tails[j-1]
+    prev_map[num] = prev
+    if j == len(tails):
+        tails.append(num)
+    else:
+        tails[j] = num
+
+# Reconstruct the LIS
+sequence = []
+current = tails[-1]
+while current is not None:
+    sequence.append(current)
+    current = prev_map[current]
+
+sequence.reverse()
+
+pri
