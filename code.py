@@ -1,21 +1,20 @@
-import math
+import sys
+sys.setrecursionlimit(1 << 25)
 
-def readint():
-    return list(map(int, input().split()))
+class UnionFind:
+    def __init__(self, size):
+        self.parent = list(range(size))
+        self.rank = [1] * size
 
-def main():
-    M, P = map(int, input().split())
-    zones = []
-    for _ in range(M):
-        x, y, z, r, e = map(int, input().split())
-        zones.append((x, y, z, r, e))
-    
-    for _ in range(P):
-        sx, sy, sz, dx, dy, dz = map(int, input().split())
-        A = (sx, sy, sz)
-        B = (dx, dy, dz)
-        total_e = 0
-        
-        for (cx, cy, cz, r, e) in zones:
-            # Compute dA_sq and dB_sq
-        
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        if self.rank[x_root] < self.rank[y_root]:
+            
