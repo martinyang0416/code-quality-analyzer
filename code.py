@@ -1,26 +1,21 @@
-def count_valid_bs(L):
-    count = 0
-    d = 1
-    while True:
-        b = 10**d -1
-        if b > L:
-            break
-        count +=1
-        d +=1
-    return count
+n = int(input())
+stores_masks = []
+for _ in range(n):
+    bits = list(map(int, input().split()))
+    mask = 0
+    for i in range(10):
+        if bits[i] == 1:
+            mask += (1 << i)
+    stores_masks.append(mask)
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx +=1
-    for _ in range(T):
-        K = int(input[idx])
-        L = int(input[idx+1])
-        idx +=2
-        count_b = count_valid_bs(L)
-        if count_b ==0:
-            print(0, 0)
-        else:
-            total_pairs
+profits = []
+for _ in range(n):
+    profits.append(list(map(int, input().split())))
+
+max_total = -float('inf')
+for j_mask in range(1, 1 << 10):
+    total = 0
+    for i in range(n):
+        store_mask = stores_masks[i]
+        overlap = bin(j_mask & store_mask).count('1')
+        t
