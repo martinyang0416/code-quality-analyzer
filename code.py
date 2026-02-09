@@ -1,22 +1,18 @@
-import sys
-import math
-
 def main():
-    m, b = map(int, sys.stdin.readline().split())
-    weights = list(map(int, sys.stdin.readline().split()))
+    import sys
+    m, D = map(int, sys.stdin.readline().split())
+    stations = []
+    for idx in range(m):
+        y, w = map(int, sys.stdin.readline().split())
+        stations.append((y, w, idx + 1))  # store original index (1-based)
     
-    if m == 0:
-        print(0)
-        print()
-        return
+    # Sort stations by their position
+    stations.sort()
     
-    # Compute the residues modulo b
-    residues = [w % b for w in weights]
+    prev_time = 0
+    prev_y = 0
+    current_min_prev = 0  # min(DP[j] - y_j) up to previous stations
+    selected = [False] * m
     
-    # Compute GCD of all residues
-    current_gcd = residues[0]
-    for r in residues[1:]:
-        current_gcd = math.gcd(current_gcd, r)
-    
-    # Compute GCD with b
-    final_gcd = math.gcd(current_
+    for i in range(m):
+        y, w, orig_idx = s
