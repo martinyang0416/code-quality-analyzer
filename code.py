@@ -1,3 +1,22 @@
-Okay, so I have this problem where I need to find the area covered by buildings on a grid. Hmm. So the buildings form a connected region, but there might be empty spaces inside, like courtyards. The goal is to calculate the total area of the buildings. 
+from collections import defaultdict
 
-Wait, wait. So each building is a single cell on the grid. The area is the total number of cells occupied by buildings. But wait, maybe the problem is about the actual outline or the connected region including the empty spaces? Or is it just the
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    N = int(data[0])
+    idx = 1
+    group_seats = defaultdict(list)
+    for _ in range(N):
+        s = int(data[idx])
+        g = int(data[idx+1])
+        group_seats[g].append(s)
+        idx += 2
+
+    # Each group must have at least one seat, so no need to handle empty groups
+    groups = list(group_seats.keys())
+    if len(groups) == 0:
+        print(0)
+        return
+
+    # P
