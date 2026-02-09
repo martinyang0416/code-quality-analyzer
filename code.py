@@ -1,21 +1,27 @@
+import math
+
+def compute_gcd(arr):
+    current_gcd = arr[0]
+    for num in arr[1:]:
+        current_gcd = math.gcd(current_gcd, num)
+        if current_gcd == 1:
+            break
+    return current_gcd
+
 def main():
     import sys
     input = sys.stdin.read().split()
     n = int(input[0])
     a = list(map(int, input[1:n+1]))
     
-    steps = 0
-    while True:
-        next_a = a.copy()
-        changed = False
-        for i in range(1, n-1):
-            s = a[i-1] + a[i] + a[i+1]
-            new_val = 1 if s >= 2 else 0
-            if new_val != a[i]:
-                changed = True
-                next_a[i] = new_val
-        if not changed:
-            break
-        a = next_a
-        steps += 1
- 
+    if n == 0:
+        print(0)
+        return
+    
+    g = compute_gcd(a)
+    
+    b = [num // g for num in a]
+    
+    if len(b) < 2:
+        print(0)
+        return
