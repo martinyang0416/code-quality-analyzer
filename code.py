@@ -1,22 +1,19 @@
-MOD = 10**9 + 7
+import sys
+from math import gcd
+from collections import Counter
 
-def compute(s):
-    from math import factorial
-    from collections import Counter
-    
-    counts = Counter(s)
-    a = counts.get('A', 0)
-    b = counts.get('B', 0)
-    n = a + b
-    
-    numerator = factorial(n)
-    denominator = factorial(a) * factorial(b)
-    
-    result = (numerator // denominator) % MOD
-    return result
-
-# Read input
-s = input().strip()
-
-# Compute and print the result
-print(compute(s))
+def main():
+    S = sys.stdin.readline().strip()
+    Q = int(sys.stdin.readline())
+    for _ in range(Q):
+        l, r, t = map(int, sys.stdin.readline().split())
+        # Convert to 0-based indices
+        substring = S[l-1:r]  # because r is exclusive in Python's slice
+        n = len(substring)
+        if t == 0:
+            print("No")
+            continue
+        if n == 0:
+            print("Yes")
+            continue
+      
