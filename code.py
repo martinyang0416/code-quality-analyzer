@@ -1,22 +1,20 @@
-MOD = 10**9 + 7
+n = int(input())
+grid = [input().strip() for _ in range(n)]
+count = 0
 
-def compute(s):
-    from math import factorial
-    from collections import Counter
+for A in range(n):
+    # Rotate each row by A positions to the right
+    rotated = []
+    for row in grid:
+        if A == 0:
+            rotated_row = row
+        else:
+            rotated_row = row[-A:] + row[:-A]
+        rotated.append(rotated_row)
     
-    counts = Counter(s)
-    a = counts.get('A', 0)
-    b = counts.get('B', 0)
-    n = a + b
-    
-    numerator = factorial(n)
-    denominator = factorial(a) * factorial(b)
-    
-    result = (numerator // denominator) % MOD
-    return result
-
-# Read input
-s = input().strip()
-
-# Compute and print the result
-print(compute(s))
+    # Check if the rotated grid is symmetric
+    symmetric = True
+    for i in range(n):
+        for j in range(n):
+            if rotated[i][j] != rotated[j][i]:
+         
