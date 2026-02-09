@@ -1,16 +1,16 @@
-n = int(input())
-a = list(map(int, input().split()))
-up = [1] * n
-down = [1] * n
+n, m = map(int, input().split())
+degrees = [0] * (n + 1)
+for _ in range(m):
+    u, v = map(int, input().split())
+    degrees[u] += 1
+    degrees[v] += 1
 
-for i in range(n):
-    for j in range(i):
-        if a[j] < a[i]:
-            if down[j] + 1 > up[i]:
-                up[i] = down[j] + 1
-        elif a[j] > a[i]:
-            if up[j] + 1 > down[i]:
-                down[i] = up[j] + 1
+min_modifications = float('inf')
 
-max_length = max(max(up), max(down))
-print(max_length)
+for h in range(1, n + 1):
+    c = degrees[h]
+    mod = (n - 1) + m - 2 * c
+    if mod < min_modifications:
+        min_modifications = mod
+
+print(min_modifications)
