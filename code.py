@@ -1,20 +1,27 @@
+import sys
+from collections import deque
+
 def main():
-    import sys
     input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N = int(input[ptr])
-        ptr += 1
-        ranges = []
-        for _ in range(N):
-            S = int(input[ptr])
-            E = int(input[ptr + 1])
-            ranges.append((S, E))
-            ptr += 2
-        scores = [0] * N
-        for i in range(N):
-            for j in range(i + 1, N):
-                s_i, e_i = ranges[i]
-                s_j, e
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    M = int(input[idx])
+    idx += 1
+    
+    T = []
+    for _ in range(N):
+        T.append(int(input[idx]))
+        idx += 1
+    
+    adj = [[] for _ in range(N)]
+    in_degree = [0] * N
+    deps = [[] for _ in range(N)]
+    
+    for _ in range(M):
+        A = int(input[idx]) - 1
+        idx += 1
+        B = int(input[idx]) - 1
+        idx += 1
+        
+  
