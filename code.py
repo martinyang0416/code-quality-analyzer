@@ -1,19 +1,22 @@
 import sys
-from collections import deque
+import math
 
 def main():
-    n, k = map(int, sys.stdin.readline().split())
-    adj = [set() for _ in range(n)]
-    for _ in range(k):
-        parts = sys.stdin.readline().split()
-        if not parts:
-            continue
-        if parts[0] == "CONNECT":
-            u = int(parts[1])
-            v = int(parts[2])
-            adj[u].add(v)
-            adj[v].add(u)
-        elif parts[0] == "DISCONNECT":
-            u = int(parts[1])
-            v = int(parts[2])
+    m, b = map(int, sys.stdin.readline().split())
+    weights = list(map(int, sys.stdin.readline().split()))
     
+    if m == 0:
+        print(0)
+        print()
+        return
+    
+    # Compute the residues modulo b
+    residues = [w % b for w in weights]
+    
+    # Compute GCD of all residues
+    current_gcd = residues[0]
+    for r in residues[1:]:
+        current_gcd = math.gcd(current_gcd, r)
+    
+    # Compute GCD with b
+    final_gcd = math.gcd(current_
