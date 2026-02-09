@@ -1,20 +1,27 @@
 n = int(input())
-scores = list(map(int, input().split()))
-scores.sort()
+ages = list(map(int, input().split()))
 
-max_rating = 0
-for R in range(n, 0, -1):
-    # Binary search to find the first index where score >= R
-    left, right = 0, n
-    while left < right:
-        mid = (left + right) // 2
-        if scores[mid] >= R:
-            right = mid
-        else:
-            left = mid + 1
-    count = n - left
-    if count >= R:
-        max_rating = R
-        break
+evens = []
+odds = []
 
-print(max_rating)
+for idx in range(n):
+    if ages[idx] % 2 == 0:
+        evens.append(idx + 1)  # Using 1-based index
+    else:
+        odds.append(idx + 1)
+
+even_count = len(evens)
+odd_count = len(odds)
+
+impossible = False
+if even_count > 0 and even_count < 4:
+    impossible = True
+if odd_count > 0 and odd_count < 4:
+    impossible = True
+
+if impossible:
+    print("Impossible")
+else:
+    tables = []
+    if even_count >= 4:
+        ta
