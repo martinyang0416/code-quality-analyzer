@@ -1,6 +1,22 @@
-n, m = map(int, input().split())
-rows = (1 << n) - 1
-cols = (1 << m) - 1
+from collections import deque
 
-for _ in range(rows):
-    print('0' * cols)
+def longest_temperature_span():
+    import sys
+    n = int(sys.stdin.readline())
+    temps = list(map(int, sys.stdin.readline().split()))
+    if n == 0:
+        print(0)
+        return
+
+    max_deque = deque()
+    min_deque = deque()
+    left = 0
+    max_len = 0
+
+    for right in range(n):
+        current_temp = temps[right]
+
+        # Update max_deque
+        while max_deque and temps[max_deque[-1]] <= current_temp:
+            max_deque.pop()
+        max_deque.ap
