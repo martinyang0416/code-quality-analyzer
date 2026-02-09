@@ -1,19 +1,14 @@
-import bisect
-from collections import deque
-
 def main():
     import sys
     input = sys.stdin.read().split()
-    ptr = 0
-    w = int(input[ptr]); ptr +=1
-    h = int(input[ptr]); ptr +=1
-    n = int(input[ptr]); ptr +=1
-    flower_beds = []
-    for _ in range(n):
-        x1 = int(input[ptr]); ptr +=1
-        y1 = int(input[ptr]); ptr +=1
-        x2 = int(input[ptr]); ptr +=1
-        y2 = int(input[ptr]); ptr +=1
-        flower_beds.append( (x1, y1, x2, y2) )
-    
-    # Collect x and y coordinate
+    N = int(input[0])
+    index = 1
+    result = []
+    for _ in range(N):
+        a, b, c, d, e = map(int, input[index:index+5])
+        index +=5
+        sum_first = a + b + c
+        # Since the problem states the sums are equal, only calculate one
+        # The letter is determined by sum_first + 96 (since 'a' is 97 in ASCII)
+        # Wait, the first example gives a when sum_first is 1 → 1 corresponds to 'a'
+        # So we nee
