@@ -1,18 +1,15 @@
-n_target, h_target = map(int, input().split())
+M = int(input())
+lines = []
+for _ in range(M):
+    d, c = map(int, input().split())
+    lines.append((d, c))
 
-max_n = n_target
-max_h = 2 * max_n  # Theoretical maximum height for n nodes is n.
+number_str = ''.join(str(d) * c for d, c in lines)
+rounds = 0
 
-# Initialize DP and cumulative sum arrays
-dp = [[0] * (max_h + 2) for _ in range(max_n + 2)]
-sum_n_h = [[0] * (max_h + 2) for _ in range(max_n + 2)]
+while len(number_str) > 1:
+    sum_digits = sum(int(ch) for ch in number_str)
+    rounds += 1
+    number_str = str(sum_digits)
 
-# Base case: empty tree has height 0
-for h in range(max_h + 1):
-    sum_n_h[0][h] = 1
-
-for n in range(1, max_n + 1):
-    for h in range(1, max_h + 1):
-        total = 0
-        for i in range(n):
-            j = n - 1 
+print(rounds)
