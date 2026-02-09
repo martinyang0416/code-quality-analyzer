@@ -1,22 +1,12 @@
-import sys
+n = int(input())
+a = [list(map(int, input().split())) for _ in range(n)]
+result = []
 
-def count_a_in_hex_range(x, y):
-    start = min(x, y)
-    end = max(x, y)
-    total = 0
-    for n in range(start, end + 1):
-        hex_str = hex(n)[2:]  # Get the hex without '0x'
-        # Convert to uppercase to count 'A's
-        total += hex_str.upper().count('A')
-    return total
+for s in range(2 * n - 1):
+    i_min = max(0, s - (n - 1))
+    i_max = min(s, n - 1)
+    for i in range(i_min, i_max + 1):
+        j = s - i
+        result.append(str(a[i][j]))
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    for _ in range(N):
-        x = int(input[idx])
-        y = int(input[idx+1])
-      
+print(' '.join(result))
