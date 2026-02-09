@@ -1,20 +1,17 @@
-import bisect
+n = int(input())
+crops = []
 
-n, m = map(int, input().split())
-x = list(map(int, input().split()))
-f = list(map(int, input().split()))
-
-stalls = [x[i] for i in range(len(f)) if f[i] == 1]
-counts = [0] * len(stalls)
-
-for i in range(len(x)):
-    if f[i] == 0:
-        x_c = x[i]
-        pos = bisect.bisect_left(stalls, x_c)
-        if pos == 0:
-            counts[0] += 1
-        elif pos == len(stalls):
-            counts[-1] += 1
-        else:
-            d_left = x_c - stalls[pos-1]
-            d_right = stalls
+for _ in range(n):
+    parts = input().split()
+    name = parts[0]
+    cost = int(parts[1])
+    growth_time = int(parts[2])
+    daily_growth = int(parts[3])
+    days_to_fruit = int(parts[4])
+    yield_val = int(parts[5])
+    sell_price = int(parts[6])
+    total_harvests = int(parts[7])
+    
+    profit = (yield_val * sell_price * total_harvests) - cost
+    time = days_to_fruit + (total_harvests - 1) * daily_growth
+    per_day = profit / time if time != 0 else 0  # avo
