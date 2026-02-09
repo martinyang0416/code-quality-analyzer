@@ -1,20 +1,26 @@
-import sys
+import bisect
 
 def main():
-    n = int(sys.stdin.readline())
-    l = list(map(int, sys.stdin.readline().split()))
-    m = max(l)
-    s = sum(l)
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    M = int(data[idx])
+    idx += 1
+    D = int(data[idx])
+    idx += 1
     
-    # Option 1: Z <= current maximum
-    option1_val = max(1, 2 * m - s + 1)
-    candidate1 = option1_val if option1_val <= m else float('inf')
+    sites = []
+    for _ in range(M):
+        r = int(data[idx])
+        p = int(data[idx + 1])
+        sites.append((r, p))
+        idx += 2
     
-    # Option 2: Z becomes new maximum
-    option2_val = m + 1
-    candidate2 = option2_val if s > option2_val else float('inf')
+    # Sort the sites based on position
+    sites.sort(key=lambda x: x[1])
     
-    minimal_z = min(candidate1, candidate2)
-    print(minimal_z)
-
-if __n
+    p_list = [p for (r, p) in sites]
+    r_list = [r for (r, p) in sites]
+    
+    # Comp
