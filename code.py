@@ -1,12 +1,23 @@
-n = int(input())
-a = list(map(int, input().split()))
-prefix = [0]
-for num in a:
-    prefix.append(prefix[-1] + num)
-result = []
-for k in range(1, n + 1):
-    sum_first = prefix[k]
-    sum_last = prefix[n] - prefix[n - k]
-    if sum_first == sum_last:
-        result.append(str(k))
-print(' '.join(result))
+def factorize(k):
+    factors = {}
+    for i in range(2, int(k**0.5) + 1):
+        while k % i == 0:
+            factors[i] = factors.get(i, 0) + 1
+            k = k // i
+    if k > 1:
+        factors[k] = 1
+    return factors
+
+n, k = map(int, input().split())
+b = list(map(int, input().split()))
+
+factors = factorize(k)
+primes = list(factors.keys())
+required = factors
+
+sum_exponents = {p: 0 for p in primes}
+
+for num in b:
+    for p in primes:
+        cnt = 0
+        temp = num  # Create a tempora
