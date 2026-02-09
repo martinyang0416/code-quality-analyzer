@@ -1,18 +1,19 @@
-n = int(input())
-x, y = 0, 0
-directions = []
-for _ in range(n):
-    a, b = map(int, input().split())
-    new_x_plus = x + a
-    new_y_plus = y + b
-    d_plus = abs(new_x_plus) + abs(new_y_plus)
-    new_x_minus = x - a
-    new_y_minus = y - b
-    d_minus = abs(new_x_minus) + abs(new_y_minus)
-    if d_plus < d_minus:
-        directions.append(1)
-        x, y = new_x_plus, new_y_plus
-    else:
-        directions.append(-1)
-        x, y = new_x_minus, new_y_minus
-print(' '.join(map(str, directions))
+def calculate_total_segments(x, y):
+    segment_map = {
+        '0': 6, '1': 2, '2': 5, '3': 5, '4': 4,
+        '5': 5, '6': 6, '7': 3, '8': 7, '9': 6,
+        '-': 4
+    }
+    
+    total = 0
+    for number in range(x, y + 1):
+        s = str(number)
+        for c in s:
+            total += segment_map[c]
+        if number != y:
+            total += segment_map['-']
+    
+    return total
+
+x, y = map(int, input().split())
+print(calculate_total_segments(x, y))
