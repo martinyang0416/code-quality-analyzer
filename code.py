@@ -1,16 +1,18 @@
-n = int(input())
-a = list(map(int, input().split()))
-from collections import defaultdict
-
-freq = defaultdict(int)
-
-for num in a:
-    msb = num.bit_length() - 1
-    freq[msb] += 1
-
-total = 0
-for count in freq.values():
-    if count >= 2:
-        total += count * (count - 1) // 2
-
-print(total)
+def check_valid_groups(temp_list):
+    groups = []
+    i = 0
+    n = len(temp_list)
+    while i < n:
+        if i + 3 < n:
+            current = temp_list[i:i+4]
+            if len(set(current)) == 1:
+                groups.append(current)
+                i += 4
+                continue
+            if current == sorted(current) and current[0] == current[3] - 3:
+                groups.append(current)
+                i += 4
+                continue
+        if i + 3 >= n:
+            return False
+ 
