@@ -1,20 +1,25 @@
-def find_dominant_tree(t, test_cases):
-    results = []
-    for case in test_cases:
-        n, h = case
-        if n == 1:
-            results.append(1)
-            continue
-        
-        left = [0] * n
-        for i in range(1, n):
-            if h[i-1] < h[i]:
-                left[i] = left[i-1] + 1
-            else:
-                left[i] = 0
-        
-        right = [0] * n
-        for i in range(n-2, -1, -1):
-            if h[i] < h[i+1]:
-                right[i] = right[i+1] + 1
-      
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    R = int(input[idx])
+    idx += 1
+
+    beds = []
+    for _ in range(N):
+        f = int(input[idx])
+        p = int(input[idx+1])
+        beds.append((p, f))
+        idx += 2
+
+    # Sort the flower beds by their positions
+    beds.sort()
+
+    # Extract positions and flowers
+    p = [x[0] for x in beds]
+    f = [x[1] for x in beds]
+
+    # Compute prefix sums
+    prefix = [0] * (N + 
