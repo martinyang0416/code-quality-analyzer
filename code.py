@@ -1,19 +1,19 @@
-def determine_holder():
+def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        ID = int(input[idx + 1])
-        idx += 2
-        current = ID
-        last_passer = None
-        for _ in range(N):
-            cmd = input[idx]
-            if cmd == 'P':
-                # Process P command
-                new_id = int(input[idx + 1])
-                idx += 2
-                last_passer = current
+    title = sys.stdin.readline().strip()
+    title_upper = title.upper()
+    
+    # Define the groups based on traditional phone keypad layout
+    groups = {
+        '2': 'ABC',
+        '3': 'DEF',
+        '4': 'GHI',
+        '5': 'JKL',
+        '6': 'MNO',
+        '7': 'PQRS',
+        '8': 'TUV',
+        '9': 'WXYZ'
+    }
+    
+    # Create a mapping from each character to its corresponding number
+    mapping = {char: key for key, value in groups.items() for char in va
