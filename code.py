@@ -1,19 +1,21 @@
-import math
-import itertools
+import sys
+from collections import deque
 
-n = int(input())
-radii = [int(input()) for _ in range(n)]
-
-max_circumference = 0.0
-
-for k in range(3, n + 1):
-    for subset in itertools.combinations(radii, k):
-        sum_r = sum(subset)
-        for arrangement in itertools.permutations(subset):
-            valid = True
-            for i in range(k):
-                a = arrangement[i]
-                b = arrangement[(i + 1) % k]
-                if a + b >= sum_r:
-                    valid = False
-                
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    ptr = 0
+    t = int(data[ptr])
+    ptr += 1
+    for _ in range(t):
+        n = int(data[ptr])
+        k = int(data[ptr+1])
+        ptr += 2
+        friends = list(map(int, data[ptr:ptr+k]))
+        ptr += k
+        adj = [[] for _ in range(n + 1)]
+        for __ in range(n - 1):
+            u = int(data[ptr])
+            v = int(data[ptr+1])
+            adj[u].append(v)
+            adj
