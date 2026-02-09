@@ -1,24 +1,24 @@
-n, m = map(int, input().split())
-grid = [list(input().strip()) for _ in range(n)]
+import sys
+import math
 
-min_row = n
-max_row = -1
-min_col = m
-max_col = -1
-has_sample = False
+def extended_gcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        g, y, x = extended_gcd(b % a, a)
+        return (g, x - (b // a) * y, y)
 
-for i in range(n):
-    for j in range(m):
-        if grid[i][j] == 's':
-            has_sample = True
-            min_row = min(min_row, i)
-            max_row = max(max_row, i)
-            min_col = min(min_col, j)
-            max_col = max(max_col, j)
+def crt(a1, m1, a2, m2):
+    g, x, y = extended_gcd(m1, m2)
+    if (a1 - a2) % g != 0:
+        return None
+    lcm = m1 // g * m2
+    x0 = (a1 + (x * (a2 - a1) // g) % (m2 // g) * m1) % lcm
+    return x0
 
-if not has_sample:
-    for row in grid:
-        print(''.join(row))
-    exit()
-
-# Now, mark 
+def compute_same_days(d, r1, r2, n, m):
+    same = 0
+    for x in range(d):
+        a = x % n
+        b = x % m
+   
