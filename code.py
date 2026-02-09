@@ -1,19 +1,23 @@
-def is_lucky(s):
-    return all(c in {'0', '4', '7'} for c in s)
+import heapq
 
-def solve():
-    import sys
-    input = sys.stdin.read().split()
-    t = int(input[0])
-    cases = input[1:t+1]
+class Edge:
+    def __init__(self, to, rev, capacity, cost):
+        self.to = to
+        self.rev = rev
+        self.capacity = capacity
+        self.cost = cost
 
-    # Precompute possible sums for 6 digits of 0,4,7
-    max_sum = 6*7
-    possible = [False] * (max_sum + 1)
-    # Generate all possible sums with exactly 6 digits
-    from itertools import product
-    for digits in product([0,4,7], repeat=6):
-        s = sum(digits)
-        possible[s] = True
+def add_edge(adj, fr, to, capacity, cost):
+    adj[fr].append(Edge(to, len(adj[to]), capacity, cost))
+    adj[to].append(Edge(fr, len(adj[fr])-1, 0, -cost))
 
-    for n_str in cases:
+def min_cost_flow(adj, s, t, maxf):
+    n = len(adj)
+    res = 0.0
+    h = [0.0] * n
+    prevv = [0] * n
+    preve = [0] * n
+    INF = float('inf')
+
+    flow = 0
+  
