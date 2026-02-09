@@ -1,17 +1,23 @@
-n = int(input())
-points = [tuple(map(int, input().split())) for _ in range(n+1)]
-count = 0
-
-for i in range(1, n+1):
-    a = points[i-1]
-    b = points[i % (n+1)]
-    c = points[(i+1) % (n+1)]
-    abx = b[0] - a[0]
-    aby = b[1] - a[1]
-    bcx = c[0] - b[0]
-    bcy = c[1] - b[1]
-    dot = abx * bcx + aby * bcy
-    if dot > 0:
-        count += 1
-
-print(count)
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    while True:
+        n = int(input[ptr])
+        m = int(input[ptr+1])
+        ptr += 2
+        if n == 0 and m == 0:
+            break
+        vectors = []
+        for _ in range(n):
+            s = input[ptr]
+            ptr += 1
+            num = int(s, 2)
+            vectors.append(num)
+        # Compute S
+        S = 0
+        for num in vectors:
+            S ^= num
+        if S == 0:
+            print(n)
+      
