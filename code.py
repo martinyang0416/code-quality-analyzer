@@ -1,24 +1,22 @@
-n, k = map(int, input().split())
-
-max_m = 0
-low = 0
-high = k
-
-while low <= high:
-    mid = (low + high) // 2
-    t = n - 1  # number of terms to sum
-    s = 0
-    current = mid // 2
-    steps = t
-    while steps > 0 and current > 0:
-        s += current
-        current = current // 2
-        steps -= 1
-    total = mid + s
-    if total <= k:
-        max_m = mid
-        low = mid + 1
-    else:
-        high = mid - 1
-
-print(max_m)
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N, K = int(input[idx]), int(input[idx+1])
+    idx += 2
+    
+    cuboids = []
+    x_coords = set()
+    y_coords = set()
+    z_coords = set()
+    
+    for _ in range(N):
+        x1 = int(input[idx])
+        y1 = int(input[idx+1])
+        z1 = int(input[idx+2])
+        x2 = int(input[idx+3])
+        y2 = int(input[idx+4])
+        z2 = int(input[idx+5])
+        idx += 6
+        
+        cuboids.append( (x1, y1, z1, x2, y
