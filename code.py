@@ -1,12 +1,20 @@
-s = input().strip()
-if not s:
-    print(s)
-else:
-    s_list = list(s)
-    for i in range(1, len(s_list)):
-        c = s_list[i]
-        if c == 'z':
-            s_list[i] = 'a'
-        else:
-            s_list[i] = chr(ord(c) + 1)
-    print(''.join(s_list))
+def main():
+    import sys
+    n = int(sys.stdin.readline())
+    p = list(map(int, sys.stdin.readline().split()))
+    visited = [False] * n
+    cycle_count = 0
+
+    for i in range(n):
+        if not visited[i]:
+            cycle_count += 1
+            current = i
+            while not visited[current]:
+                visited[current] = True
+                next_pos = p[current] - 1
+                current = next_pos
+
+    print(n - cycle_count)
+
+if __name__ == "__main__":
+    main()
