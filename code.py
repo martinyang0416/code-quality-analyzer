@@ -1,17 +1,13 @@
-n = int(input())
-t = input().strip()
+n, x = map(int, input().split())
+k = int(input())
+c = 0
+for _ in range(k):
+    t, _ = map(int, input().split())
+    if t == 1:
+        c += 1
 
-s = []
-index = 0
-group_size = 1
+u = (x - 1) - k
+min_skipped = 0
+max_skipped = u
 
-while index < len(t):
-    # Extract the group of current group_size
-    group = t[index:index + group_size]
-    # Append the first character of the group to s
-    s.append(group[0])
-    # Move to the next group
-    index += group_size
-    group_size += 1
-
-print(''.join(s))
+print(min_skipped, max_skipped)
