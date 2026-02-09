@@ -1,19 +1,14 @@
-n, m, k = map(int, input().split())
-moves = [tuple(map(int, input().split())) for _ in range(k)]
+n = int(input())
+degrees = [0] * (n + 1)
+for _ in range(n - 1):
+    u, v = map(int, input().split())
+    degrees[u] += 1
+    degrees[v] += 1
 
-added = set()
-result = 0
+s = 0
+for i in range(1, n + 1):
+    d = degrees[i]
+    s += d * (d - 1) // 2
 
-for step in range(k):
-    i, j = moves[step]
-    added.add((i, j))
-    
-    # Check all four possible squares that could include (i,j)
-    
-    # Square 1: (i,j) is top-left
-    if i + 1 <= n and j + 1 <= m:
-        if (i, j + 1) in added and (i + 1, j) in added and (i + 1, j + 1) in added:
-            result = step + 1
-            break
-    
-    # Square 2: (i,j) is top-ri
+total = (n - 1) + s
+print(total)
