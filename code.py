@@ -1,18 +1,13 @@
-import sys
-from collections import defaultdict
+n, k = map(int, input().split())
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(sys.stdin.readline())
-    edges = [[] for _ in range(n + 1)]
-    for _ in range(n - 1):
-        u, v = map(int, sys.stdin.readline().split())
-        edges[u].append(v)
-        edges[v].append(u)
-    f = list(map(int, sys.stdin.readline().split()))
-    f = [0] + f  # 1-based indexing
+count_div3 = n // 3
 
-    parent = [0] * (n + 1)
-    size = [0] * (n + 1)
-    count = [0] * (n + 1)
-    mono = [False] * (n + 1)
+if k <= count_div3:
+    print(3 * k)
+else:
+    m = k - count_div3
+    # Calculate the m-th non-divisible number
+    g = (m - 1) // 2
+    r = (m - 1) % 2 + 1
+    x = 3 * g + r
+    print(x)
