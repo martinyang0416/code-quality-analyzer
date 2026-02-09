@@ -1,22 +1,21 @@
+import sys
+
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N = int(input[ptr])
-        ptr += 1
-        c = list(map(int, input[ptr:ptr+N]))
-        ptr += N
-        S = sum(c)
-        if S % N != 0:
-            print(-1)
-            continue
-        avg = S // N
-        running = 0
-        transfers = 0
-        for i in range(N):
-            running += c[i] - avg
-            if i != N - 1:
-                trans
+    n, k = map(int, sys.stdin.readline().split())
+    digits = [sys.stdin.readline().strip() for _ in range(n)]
+
+    # Define the masks for each digit (0-9) as binary strings
+    digit_masks = [
+        '1111110',  # 0
+        '0110000',  # 1
+        '1101101',  # 2
+        '1111001',  # 3
+        '0110011',  # 4
+        '1011011',  # 5
+        '1011111',  # 6
+        '1110000',  # 7
+        '1111111',  # 8
+        '1111011',  # 9
+    ]
+
+    # Precompute for each digit th
