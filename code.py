@@ -1,19 +1,19 @@
-import bisect
-from collections import deque
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    w = int(input[ptr]); ptr +=1
-    h = int(input[ptr]); ptr +=1
-    n = int(input[ptr]); ptr +=1
-    flower_beds = []
-    for _ in range(n):
-        x1 = int(input[ptr]); ptr +=1
-        y1 = int(input[ptr]); ptr +=1
-        x2 = int(input[ptr]); ptr +=1
-        y2 = int(input[ptr]); ptr +=1
-        flower_beds.append( (x1, y1, x2, y2) )
-    
-    # Collect x and y coordinate
+import builtins
+import re
