@@ -1,14 +1,25 @@
-n = int(input())
-directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # North, East, South, West
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    M = float(input[ptr])
+    ptr += 1
 
-while n != -1:
-    steps = 2 * n
-    x, y = 0, 0
-    for j in range(steps):
-        dir_idx = j % 4
-        dx, dy = directions[dir_idx]
-        x += dx
-        y += dy
-    print(x)
-    print(y)
-    n = int(input())
+    cylinders = []
+
+    for _ in range(N):
+        K = int(input[ptr])
+        ptr += 1
+        for i in range(K):
+            S = float(input[ptr])
+            ptr += 1
+            H = float(input[ptr])
+            ptr += 1
+            cylinders.append((S, H))
+
+    # Sort by base area (S)
+    cylinders.sort(key=lambda x: x[0])
+
+    total_height
