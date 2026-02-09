@@ -1,19 +1,24 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    while True:
-        N = int(input[ptr])
-        ptr += 1
-        if N == 0:
-            break
-        files = {}  # key: I, value: (start, end, E)
-        excl_intervals = []
-        free_intervals = [(0, float('inf'))]  # managed as list of (start, end), start <= end
+import sys
 
-        for _ in range(N):
-            cmd = input[ptr]
-            ptr += 1
-            if cmd == 'W':
-                I = int(input[ptr])
-          
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    
+    for _ in range(t):
+        n = int(data[idx])
+        m = int(data[idx + 1])
+        idx += 2
+        grid = []
+        for i in range(n):
+            grid.append(data[idx].strip())
+            idx += 1
+        
+        # Precompute right[i][j]
+        right = [[0] * m for _ in range(n)]
+        for i in range(n):
+            j = 0
+            while j < m:
+      
