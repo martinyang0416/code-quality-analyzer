@@ -1,22 +1,19 @@
-n, *rest = map(int, open(0).read().split())
-a = rest[:n]
+import math
+import itertools
 
-from collections import defaultdict
+n = int(input())
+radii = [int(input()) for _ in range(n)]
 
-freq = defaultdict(int)
-for num in a:
-    freq[num] += 1
+max_circumference = 0.0
 
-unique = list(freq.keys())
-len_unique = len(unique)
-
-if len_unique >= 3:
-    print(3)
-elif len_unique == 2:
-    a1, a2 = unique[0], unique[1]
-    if freq[a1] >= 2 and freq[a2] >= 2:
-        print(4)
-    else:
-        print(-1)
-else:
-    print(-1)
+for k in range(3, n + 1):
+    for subset in itertools.combinations(radii, k):
+        sum_r = sum(subset)
+        for arrangement in itertools.permutations(subset):
+            valid = True
+            for i in range(k):
+                a = arrangement[i]
+                b = arrangement[(i + 1) % k]
+                if a + b >= sum_r:
+                    valid = False
+                
