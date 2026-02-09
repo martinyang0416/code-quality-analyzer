@@ -1,11 +1,15 @@
-n = int(input())
-A = list(map(int, input().split()))
-m = int(input())
-B = list(map(int, input().split()))
+n, m = map(int, input().split())
 
-combined = A + B
-unique_set = set(combined)
-sorted_union = sorted(unique_set)
+max_a = -float('inf')
+for _ in range(n):
+    x, y = map(int, input().split())
+    if x > max_a:
+        max_a = x
 
-for num in sorted_union:
-    print(num)
+min_b = float('inf')
+for _ in range(m):
+    x, y = map(int, input().split())
+    if x < min_b:
+        min_b = x
+
+print("YES" if max_a < min_b else "NO")
