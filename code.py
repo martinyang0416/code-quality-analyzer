@@ -1,8 +1,23 @@
-n = int(input())
-recipients = list(map(int, input().split()))
-counts = [0] * (n + 1)
+import sys
 
-for r in recipients:
-    counts[r] += 1
-
-print(' '.join(map(str, counts[1:n+1])))
+def main():
+    while True:
+        line = sys.stdin.readline()
+        if not line:
+            break
+        a, b = map(int, line.strip().split())
+        if a == 0 and b == 0:
+            break
+        
+        groupA = []
+        for _ in range(a):
+            x = int(sys.stdin.readline())
+            groupA.append(x)
+        
+        groupB = []
+        for _ in range(b):
+            y = int(sys.stdin.readline())
+            groupB.append(y)
+        
+        sumA = sum(groupA)
+ 
