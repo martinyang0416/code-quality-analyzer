@@ -1,21 +1,19 @@
-import bisect
-from collections import defaultdict
+def find_min_k(s):
+    if s == 0:
+        return 0
+    current_fact = 1
+    current_sum = 1
+    k = 1
+    if current_sum >= s:
+        return k
+    while True:
+        k += 1
+        current_fact *= k
+        current_sum = sum(int(d) for d in str(current_fact))
+        if current_sum >= s:
+            return k
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    n = int(data[0])
-    ptr = 1
-
-    # Initialize a dictionary to hold for each x its list of dates and prefix sums
-    warehouse = defaultdict(lambda: ([], []))  # [dates, sums]
-
-    for _ in range(n):
-        a = int(data[ptr])
-        d = int(data[ptr+1])
-        x = int(data[ptr+2])
-        ptr += 3
-
-        if a == 1 or a == 2:
-            delta = 1 if a == 1 
+T = int(input())
+for _ in range(T):
+    s = int(input())
+    print(find_min_k(s))
