@@ -1,12 +1,20 @@
-MOD = 998244353
+MOD = 10**9 + 7
 
-n = int(input())
-# The array is read but not used since the sum is n*(n+1)/2 regardless of the fixed values
-input().split()
-
-n_mod = n % MOD
-sum_n = (n_mod * (n + 1)) % MOD
-inv_two = pow(2, MOD-2, MOD)
-result = (sum_n * inv_two) % MOD
-
-print(result)
+def main():
+    import sys
+    n, k = map(int, sys.stdin.readline().split())
+    
+    # Precompute combinatorial numbers
+    max_n = n
+    comb = [[0]*(max_n + 1) for _ in range(max_n + 1)]
+    for i in range(max_n + 1):
+        comb[i][0] = 1
+        for j in range(1, i + 1):
+            comb[i][j] = (comb[i-1][j-1] + comb[i-1][j]) % MOD
+    
+    result = 0
+    for s in range(n+1):
+        for t in range(n+1):
+            sign = (-1) ** (s + t)
+            c_s = comb[n][s]
+    
