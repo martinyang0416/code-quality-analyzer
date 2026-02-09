@@ -1,21 +1,22 @@
-import sys
-
-def decode_caesar(line):
-    result = []
-    n = 0
-    for c in line:
-        if c.isalpha():
-            encrypted_pos = ord(c) - ord('a')
-            shift = (n + 1) % 26
-            original_pos = (encrypted_pos - shift) % 26
-            result.append(chr(original_pos + ord('a')))
-        else:
-            result.append(c)
-        n += 1
-    return ''.join(result)
+import heapq
 
 def main():
-    for line in sys.stdin:
-        line = line.rstrip('\n')
-        decoded_line = decode_caesar(line)
-  
+    n, m = map(int, input().split())
+    adj = [[] for _ in range(n)]
+    for _ in range(m):
+        u, v, w = map(int, input().split())
+        adj[u].append((v, w))
+        adj[v].append((u, w))
+    s = int(input())
+    
+    INF = float('inf')
+    distance = [INF] * n
+    distance[s] = 0
+    heap = [(0, s)]
+    
+    while heap:
+        current_dist, u = heapq.heappop(heap)
+        if current_dist > distance[u]:
+            continue
+        for v, w in adj[u]:
+        
