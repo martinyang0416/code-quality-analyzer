@@ -1,16 +1,21 @@
-n = int(input())
-a = list(map(int, input().split()))
-up = [1] * n
-down = [1] * n
+from collections import deque
 
-for i in range(n):
-    for j in range(i):
-        if a[j] < a[i]:
-            if down[j] + 1 > up[i]:
-                up[i] = down[j] + 1
-        elif a[j] > a[i]:
-            if up[j] + 1 > down[i]:
-                down[i] = up[j] + 1
+def read_grid():
+    grid = []
+    for _ in range(3):
+        row = list(map(str, input().split()))
+        grid.extend(row)
+    return ''.join(grid)
 
-max_length = max(max(up), max(down))
-print(max_length)
+def main():
+    target = "123456780"
+    while True:
+        line = input()
+        if line == '-1':
+            break
+        # Read the next two lines
+        grid_part = [line.strip()]
+        grid_part.append(input().strip())
+        grid_part.append(input().strip())
+        # Process each test case
+        initi
