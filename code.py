@@ -1,18 +1,27 @@
+MOD = 10**9 + 7
+
 def main():
     import sys
-    n, m = map(int, sys.stdin.readline().split())
-    variables = []
-    name_to_index = {}
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    M = int(input[idx])
+    idx += 1
 
-    for idx in range(n):
-        line = sys.stdin.readline().strip()
-        parts = line.split()
-        name = parts[0]
-        expr = ' '.join(parts[2:])  # everything after ":", excluding :=
+    edges = []
+    for _ in range(M):
+        a = int(input[idx]) - 1  # converting to 0-based index
+        idx += 1
+        b = int(input[idx]) - 1
+        idx += 1
+        c = int(input[idx])
+        idx += 1
+        edges.append((c, a, b))
 
-        if expr[0] in '01':
-            # constant case
-            const_str = expr
-            assert len(const_str) == m
-            variables.append(('const', const_str))
-        e
+    # Sort edges by cost
+    edges.sort()
+
+    # Group edges by cost
+    groups = []
+  
