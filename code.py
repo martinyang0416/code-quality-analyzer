@@ -1,18 +1,18 @@
-class DSU:
-    def __init__(self, size):
-        self.parent = list(range(size))
-        self.rank = [0] * size
+import sys
 
-    def find(self, x):
-        while self.parent[x] != x:
-            self.parent[x] = self.parent[self.parent[x]]  # Path compression
-            x = self.parent[x]
-        return x
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    T = int(data[0])
+    results = []
+    for i in range(1, T + 1):
+        N = int(data[i])
+        if N % 2 == 0:
+            res = N // 2
+        else:
+            res = (N - 1) // 2 + 1
+        results.append(res)
+    print('\n'.join(map(str, results)))
 
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-        if x_root == y_root:
-            return False
-        if self.rank[x_root] < self.rank[y_root]:
-            
+if __name__ == "__main__":
+    main()
