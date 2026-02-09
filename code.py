@@ -1,17 +1,25 @@
-fixed_part1 = "What are you doing while sending "  # 33 characters
-fixed_part2 = " Are you busy? Will you send "     # 29 characters
-f0_str = "What are you doing at the end of the world? Are you busy? Will you save us?"  # length 75
+import bisect
 
-def solve():
+def main():
     import sys
     input = sys.stdin.read().split()
-    q = int(input[0])
-    idx = 1
-    res = []
-    for _ in range(q):
-        n = int(input[idx])
-        k = int(input[idx+1])
-        idx +=2
-        
-        def get_char(n, k):
-            if n ==0
+    idx = 0
+    N, Q = int(input[idx]), int(input[idx+1])
+    idx +=2
+    s = input[idx]
+    idx +=1
+    spec = input[idx]
+    idx +=1
+
+    # Parse L and R into positions
+    L = []
+    R = []
+    ptr = 0
+    for c in s:
+        if c == 'L':
+            L.append(ptr)
+            ptr +=1
+        else:
+            R.append(ptr)
+            ptr +=1
+    # The intervals are given as L and R in the string, which are in orde
