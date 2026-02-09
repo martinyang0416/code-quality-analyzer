@@ -1,25 +1,16 @@
-import heapq
+n, m = map(int, input().split())
+t = min(n, m)
+# Initialize grid with 1-based indices
+grid = [[0] * (m + 1) for _ in range(n + 1)]
+for i in range(1, n + 1):
+    row = list(map(int, input().split()))
+    for j in range(1, m + 1):
+        grid[i][j] = row[j - 1]
 
-def main():
-    n = int(input())
-    s = input().strip()
-    e = list(map(int, input().split()))
-    
-    next = [-1] * n
-    prev = [-1] * n
-    for i in range(n):
-        if i > 0:
-            prev[i] = i - 1
-        if i < n - 1:
-            next[i] = i + 1
-    
-    heap = []
-    for i in range(n - 1):
-        j = i + 1
-        if s[i] != s[j]:
-            diff = abs(e[i] - e[j])
-            heapq.heappush(heap, (diff, i, j))
-    
-    output = []
-    while heap:
-        diff, i,
+# Initialize prefix sum array
+prefix = [[0] * (m + 1) for _ in range(n + 1)]
+
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        distance = (i + j - 2) * grid[i][j]
+        prefix[i][j] = distance + prefix[i-1][j] + prefix[i]
