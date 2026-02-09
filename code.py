@@ -1,16 +1,10 @@
-M = int(input())
-N = int(input())
-mat = []
-for _ in range(M):
-    row = list(map(int, input().split()))
-    mat.append(row)
-
-# Transpose the matrix
-transposed = list(zip(*mat))
-
-# Reverse the order of the rows
-rotated = transposed[::-1]
-
-# Print the result
-for row in rotated:
-    print(' '.join(map(str, row)))
+n = int(input())
+if n % 2 != 0:
+    print("NO")
+else:
+    print("YES")
+    for i in range(1, n, 2):
+        a = i
+        b = i + 1
+        print(a, b)
+        print(b, a)
