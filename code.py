@@ -1,20 +1,20 @@
-import sys
-from collections import deque
-
 def main():
+    import sys
     input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr]); ptr +=1
-    X = int(input[ptr]); ptr +=1
-    Y = int(input[ptr]); ptr +=1
+    idx = 0
+    n = int(input[idx]); idx +=1
+    m = int(input[idx]); idx +=1
+    k = int(input[idx]); idx +=1
 
-    towns = []
-    for _ in range(N):
-        K = int(input[ptr]); ptr +=1
-        sweets = []
-        for __ in range(K):
-            a = int(input[ptr]); ptr +=1
-            b = int(input[ptr]); ptr +=1
-            c = int(input[ptr]); ptr +=1
-            sweets.append( (a, b, c) )
-        town
+    vertical_cuts = set()
+    horizontal_cuts = set()
+
+    for _ in range(k):
+        x1 = int(input[idx]); y1 = int(input[idx+1]); x2 = int(input[idx+2]); y2 = int(input[idx+3])
+        idx +=4
+        if x1 == x2:
+            vertical_cuts.add(x1)
+        else:
+            horizontal_cuts.add(y1)
+
+    def compute_interva
