@@ -1,21 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    t = input[idx]
-    idx += 1
-    U = int(input[idx])
-    idx += 1
-    updates = []
-    for _ in range(U):
-        p = int(input[idx]) - 1  # converting to 0-based
-        c = input[idx+1]
-        updates.append((p, c))
-        idx += 2
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-    target = ['b', 'e', 's', 's', 'i', 'e']
-
-    def compute_A(s):
-        n = len(s)
-        # Precompute for each position the state when starting there
-        # We can store for ea
+import builtins
+import re
