@@ -1,24 +1,20 @@
 n = int(input())
-parts = {}
+patterns = []
 for _ in range(n):
-    part, cost = input().split()
-    cost = int(cost)
-    parts[part] = cost
+    parts = input().split()
+    pattern = parts[0]
+    security = int(parts[1])
+    patterns.append((pattern, security))
 
 m = int(input())
-assembly = {}
 for _ in range(m):
-    # Split the line into machine, k, and components
-    parts_line = input().split()
-    machine = parts_line[0]
-    k = int(parts_line[1])
-    components = parts_line[2:2 + k]
-    assembly[machine] = components
-
-target = input().strip()
-
-computed = {}
-
-def compute_min(part):
-    if part in computed:
-        return compute
+    password = input().strip()
+    max_security = 0
+    for patt, sec in patterns:
+        if len(patt) != len(password):
+            continue
+        match = True
+        for i in range(len(patt)):
+            if patt[i] == '*':
+                continue
+            if patt[i] != password[i]
