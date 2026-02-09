@@ -1,25 +1,22 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr])
-    ptr += 1
-    M = float(input[ptr])
-    ptr += 1
+n = int(input())
+b = list(map(int, input().split()))
+sum_all = sum(b)
+active = [True] * (n + 1)  # active[i] indicates if token i is still active
+total_gain = 0
 
-    cylinders = []
+for x in range(n, 0, -1):
+    current_sum = 0
+    m = x
+    while m <= n:
+        if active[m]:
+            current_sum += -b[m-1]  # b is 0-based
+        m += x
+    if current_sum > 0:
+        total_gain += current_sum
+        m = x
+        while m <= n:
+            if active[m]:
+                active[m] = False
+            m += x
 
-    for _ in range(N):
-        K = int(input[ptr])
-        ptr += 1
-        for i in range(K):
-            S = float(input[ptr])
-            ptr += 1
-            H = float(input[ptr])
-            ptr += 1
-            cylinders.append((S, H))
-
-    # Sort by base area (S)
-    cylinders.sort(key=lambda x: x[0])
-
-    total_height
+pr
