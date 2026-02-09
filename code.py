@@ -1,21 +1,20 @@
-import math
+import sys
+from collections import deque
 
-def find_rectangle(n, m, x, y, A):
-    best_rect = None
-    best_distance_sq = float('inf')
-
-    def get_divisors(a):
-        divisors = []
-        for d in range(1, int(math.isqrt(a)) + 1):
-            if a % d == 0:
-                divisors.append((d, a // d))
-                if d != a // d:
-                    divisors.append((a // d, d))
-        return divisors
-
-    divisors = get_divisors(A)
-
-    for w, h in divisors:
-        if w > n or h > m:
-            new_w, new_h = h, w
- 
+def main():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        n, C = int(input[idx]), int(input[idx+1])
+        idx +=2
+        edges = [[] for _ in range(n+1)]
+        degree = [0]*(n+1)
+        for _ in range(n-1):
+            v = int(input[idx])
+            u = int(input[idx+1])
+            c = int(input[idx+2])
+            idx +=3
+            edges[v].append(u)
+            edges[u].ap
