@@ -1,13 +1,19 @@
-L = int(input())
-k = L // 2
-h = 2
-required_cuts = k - 1
-positions = [h * i for i in range(1, required_cuts + 1)]
-di = [int(input()) for _ in range(L - 1)]
-total = 0
+n, k, m = map(int, input().split())
+coins = list(map(int, input().split()))
 
-for pos in positions:
-    if pos <= len(di):  # Ensure position is within the available di indices
-        total += di[pos - 1]
+max_total = float('-inf')
 
-print(total)
+for L in range(0, k + 1):
+    for R in range(0, k - L + 1):
+        if L + R > n:
+            continue
+        if R == 0:
+            selected = coins[:L]
+        elif L == 0:
+            selected = coins[-R:]
+        else:
+            selected = coins[:L] + coins[-R:]
+        sum_total = sum(selected)
+        sorted_selected = sorted(selected)
+        x_max = min(m, len(sorted_selected))
+    
