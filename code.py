@@ -1,13 +1,12 @@
-q = int(input())
-for _ in range(q):
-    h, w = map(int, input().split())
-    rows = []
-    for _ in range(h):
-        row = list(map(int, input().split()))
-        rows.append(row)
-    is_mirrored = True
-    for row in rows:
-        if row != row[::-1]:
-            is_mirrored = False
-            break
-    print("YES" if is_mirrored else "NO")
+import math
+
+b, m = map(int, input().split())
+e = b + m - 1
+
+k = math.ceil(math.sqrt(b))
+l = math.floor(math.sqrt(e))
+
+if l < k:
+    print(0)
+else:
+    print(l - k + 1)
