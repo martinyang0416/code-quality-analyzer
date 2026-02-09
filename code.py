@@ -1,19 +1,20 @@
-import sys
-from collections import defaultdict
+n = int(input())
+employees = []
+sumT = 0
+for _ in range(n):
+    t, r = map(int, input().split())
+    employees.append((r, t))
+    sumT += t
 
-def main():
-    n = int(sys.stdin.readline())
-    vendors = list(map(int, sys.stdin.readline().split()))
-    m = int(sys.stdin.readline())
-    f1 = list(map(int, sys.stdin.readline().split()))
-    f2 = list(map(int, sys.stdin.readline().split()))
-    
-    first_counts = defaultdict(int)
-    second_total = defaultdict(int)
-    
-    for j in range(m):
-        a = f1[j]
-        b = f2[j]
-        first_counts[a] += 1
-        if a != b:
-            seco
+employees.sort(reverse=True, key=lambda x: x[0])
+
+current_sum = 0
+max_val = 0
+for r, t in employees:
+    current_sum += t
+    temp = current_sum + r
+    if temp > max_val:
+        max_val = temp
+
+answer = max(max_val, sumT)
+print(answer)
