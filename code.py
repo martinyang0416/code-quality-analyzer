@@ -1,21 +1,19 @@
 import sys
+from collections import deque
 
 def main():
-    n = int(sys.stdin.readline())
-    S = (1200000) ** 2  # 1.2e6 squared is 1440000000000
-
-    x, y = 0, 0
-    result = []
-
-    for _ in range(n):
-        a, b = map(int, sys.stdin.readline().split())
-        tentative_x = x + a
-        tentative_y = y + b
-        dist_sq = tentative_x ** 2 + tentative_y ** 2
-        if dist_sq <= S:
-            x, y = tentative_x, tentative_y
-            result.append('1')
-        else:
-            result.append('0')
+    n, k = map(int, sys.stdin.readline().split())
+    adj = [set() for _ in range(n)]
+    for _ in range(k):
+        parts = sys.stdin.readline().split()
+        if not parts:
+            continue
+        if parts[0] == "CONNECT":
+            u = int(parts[1])
+            v = int(parts[2])
+            adj[u].add(v)
+            adj[v].add(u)
+        elif parts[0] == "DISCONNECT":
+            u = int(parts[1])
+            v = int(parts[2])
     
-    print(' '.
